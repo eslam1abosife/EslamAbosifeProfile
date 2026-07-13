@@ -270,7 +270,7 @@ const Home = () => {
                     <FaCode className="text-green-400 text-2xl" />
                   </div>
                   <div className={isRTL ? 'text-right' : 'text-left'}>
-                    <p className="text-2xl font-bold text-green-400">6+</p>
+                    <p className="text-2xl font-bold text-green-400">10+</p>
                     <p className="text-xs text-muted">{t.home.projects}</p>
                   </div>
                 </div>

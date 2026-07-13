@@ -1,7 +1,22 @@
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { useLanguage } from '../context/LanguageContext'
+import { translations } from '../data/translations'
 
 const ProjectCard = ({ project, index }) => {
+  const { language } = useLanguage()
+  const t = translations[language]
+  const isRTL = language === 'ar'
+
+  // ✅ ترجمة الاسم
+  const translatedTitle = t.projects?.projectTitles?.[project.title] || project.title
+  
+  // ✅ ترجمة النوع (type)
+  const translatedType = t.projects?.projectTitles?.types?.[project.type] || project.type
+  
+  // ✅ ترجمة الوصف (description) - تأكد من وجود المفتاح
+  const translatedDescription = t.projects?.projectTitles?.descriptions?.[project.description] || project.description
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -38,7 +53,7 @@ const ProjectCard = ({ project, index }) => {
         </div>
         <div className="absolute bottom-3 left-3">
           <span className="px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-lg text-xs text-white">
-            {project.type}
+            {translatedType}
           </span>
         </div>
         <div className="absolute top-3 left-3 text-2xl">
@@ -48,9 +63,11 @@ const ProjectCard = ({ project, index }) => {
 
       {/* Content */}
       <div className="p-5">
-        <h3 className="text-lg font-bold text-primary mb-2">{project.title}</h3>
+        <h3 className="text-lg font-bold text-primary mb-2">
+          {translatedTitle}
+        </h3>
         <p className="text-sm text-secondary leading-relaxed mb-3 line-clamp-2">
-          {project.description}
+          {translatedDescription}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {project.tech.map((tech, i) => (

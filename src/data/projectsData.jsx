@@ -32,6 +32,7 @@ import AwnPlatform from "../assets/image4.png";
 import EllaEcommre from "../assets/image5.png";
 import RealEstate from "../assets/image6.png";
 import AlSerajAlMunir from "../assets/image8.png";
+import Profile from "../assets/image9.png";
 
 
 
@@ -177,29 +178,17 @@ export const blazorProjects = [
 ];
 // ==================== React.js Projects ====================
 export const reactProjects = [
-  {
+   {
     id: 9,
-    title: "React Dashboard",
+    title: "Eslam Abosife Profile",
     category: "react",
-    type: "Dashboard",
-    description: "Modern admin dashboard built with React.js and Tailwind CSS",
-    tech: ["React.js", "Tailwind", "Chart.js", "REST API"],
+    type: "Personal Portfolio",
+    description: "موقع شخصي واحترافي يعرض الخبرات والمشاريع كمطور ويب متكامل باستخدام React.js و Tailwind CSS.",
+    tech: ["React.js", "Vite", "Tailwind CSS", "Framer Motion", "React Router"],
     icon: <FaReact className="text-blue-400" />,
-    github: "https://github.com/eslamabosife/react-dashboard",
-    image:
-      "https://via.placeholder.com/400x200/3b82f6/ffffff?text=React+Dashboard",
-  },
-  {
-    id: 10,
-    title: "E-Commerce Platform",
-    category: "react",
-    type: "E-Commerce",
-    description: "Full-featured e-commerce platform with payment integration",
-    tech: ["React.js", "Redux", "Stripe", "Firebase"],
-    icon: <FaReact className="text-blue-400" />,
-    github: "https://github.com/eslamabosife/react-ecommerce",
-    image:
-      "https://via.placeholder.com/400x200/8b5cf6/ffffff?text=React+E-Commerce",
+    github: "https://github.com/eslam1abosife/EslamAbosifeProfile",
+    link: "https://eslam-abosife-profile-two.vercel.app/", 
+    image: Profile,
   },
 ];
 
@@ -289,44 +278,44 @@ export const htmlCssProjects = [
 ];
 
 // ==================== C++ Projects ====================
-export const cppProjects = [
-  {
-    id: 17,
-    title: "Data Structures Library",
-    category: "cpp",
-    type: "Library",
-    description: "Custom implementation of data structures in C++",
-    tech: ["C++", "Data Structures", "OOP"],
-    icon: <SiCplusplus className="text-blue-500" />,
-    github: "https://github.com/eslamabosife/data-structures-cpp",
-    image:
-      "https://via.placeholder.com/400x200/f59e0b/ffffff?text=Data+Structures",
-  },
-  {
-    id: 18,
-    title: "Algorithm Solutions",
-    category: "cpp",
-    type: "Problem Solving",
-    description: "100+ algorithmic problem solutions from LeetCode, Codeforces",
-    tech: ["C++", "Algorithms", "Problem Solving"],
-    icon: <FaCode className="text-purple-400" />,
-    github: "https://github.com/eslamabosife/algorithm-solutions",
-    image:
-      "https://via.placeholder.com/400x200/10b981/ffffff?text=Algorithm+Solutions",
-  },
-  {
-    id: 19,
-    title: "Sorting Visualizer",
-    category: "cpp",
-    type: "Visualization",
-    description: "Interactive sorting algorithm visualizer with SFML",
-    tech: ["C++", "SFML", "Algorithms"],
-    icon: <SiCplusplus className="text-blue-500" />,
-    github: "https://github.com/eslamabosife/sorting-visualizer",
-    image:
-      "https://via.placeholder.com/400x200/ef4444/ffffff?text=Sorting+Visualizer",
-  },
-];
+// export const cppProjects = [
+//   {
+//     id: 17,
+//     title: "Data Structures Library",
+//     category: "cpp",
+//     type: "Library",
+//     description: "Custom implementation of data structures in C++",
+//     tech: ["C++", "Data Structures", "OOP"],
+//     icon: <SiCplusplus className="text-blue-500" />,
+//     github: "https://github.com/eslamabosife/data-structures-cpp",
+//     image:
+//       "https://via.placeholder.com/400x200/f59e0b/ffffff?text=Data+Structures",
+//   },
+//   {
+//     id: 18,
+//     title: "Algorithm Solutions",
+//     category: "cpp",
+//     type: "Problem Solving",
+//     description: "100+ algorithmic problem solutions from LeetCode, Codeforces",
+//     tech: ["C++", "Algorithms", "Problem Solving"],
+//     icon: <FaCode className="text-purple-400" />,
+//     github: "https://github.com/eslamabosife/algorithm-solutions",
+//     image:
+//       "https://via.placeholder.com/400x200/10b981/ffffff?text=Algorithm+Solutions",
+//   },
+//   {
+//     id: 19,
+//     title: "Sorting Visualizer",
+//     category: "cpp",
+//     type: "Visualization",
+//     description: "Interactive sorting algorithm visualizer with SFML",
+//     tech: ["C++", "SFML", "Algorithms"],
+//     icon: <SiCplusplus className="text-blue-500" />,
+//     github: "https://github.com/eslamabosife/sorting-visualizer",
+//     image:
+//       "https://via.placeholder.com/400x200/ef4444/ffffff?text=Sorting+Visualizer",
+//   },
+// ];
 
 // ==================== C++ Challenges (25 مسألة) ====================
 export const cppChallenges = [

@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FaCode, FaPlay, FaCopy, FaCheck, FaChevronUp, FaChevronDown } from 'react-icons/fa'
+import { useLanguage } from '../context/LanguageContext'
+import { translations } from '../data/translations'
 
 const ChallengeCard = ({ challenge, index, isRTL }) => {
+  const { language } = useLanguage()
+  const t = translations[language]
   const [expanded, setExpanded] = useState(false)
   const [copied, setCopied] = useState(false)
+
+  if (!challenge) return null
+
+  // ✅ الحصول على الاسم المترجم
+  const translatedTitle = t.projects?.projectTitles?.[challenge.title] || challenge.title
 
   const toggleExpand = () => setExpanded(!expanded)
 
@@ -25,7 +34,6 @@ const ChallengeCard = ({ challenge, index, isRTL }) => {
         borderColor: 'var(--border-color)'
       }}
     >
-      {/* Header */}
       <div 
         className="p-4 cursor-pointer hover:bg-accent/5 transition-colors flex items-center justify-between"
         onClick={toggleExpand}
@@ -33,11 +41,13 @@ const ChallengeCard = ({ challenge, index, isRTL }) => {
         <div className="flex-1">
           <div className="flex items-center gap-3">
             <span className="text-2xl">{challenge.icon}</span>
-            <h3 className="text-lg font-bold text-primary">{challenge.title}</h3>
+            <h3 className="text-lg font-bold text-primary">
+              {translatedTitle}  {/* ✅ استخدم الاسم المترجم */}
+            </h3>
           </div>
           <p className="text-sm text-muted mt-1">{challenge.description}</p>
           <div className="flex flex-wrap gap-1.5 mt-2">
-            {challenge.tech.map((tech, i) => (
+            {challenge.tech?.map((tech, i) => (
               <span
                 key={i}
                 className="px-2 py-0.5 rounded-full text-[10px] border"
@@ -57,8 +67,7 @@ const ChallengeCard = ({ challenge, index, isRTL }) => {
         </div>
       </div>
 
-      {/* Code & Output */}
-      {expanded && (
+      {expanded && challenge.code && (
         <motion.div
           initial={{ height: 0, opacity: 0 }}
           animate={{ height: 'auto', opacity: 1 }}
@@ -68,7 +77,6 @@ const ChallengeCard = ({ challenge, index, isRTL }) => {
         >
           <div className="p-4 pt-0 border-t" style={{ borderColor: 'var(--border-color)' }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {/* Code */}
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-medium text-muted flex items-center gap-1">
@@ -94,7 +102,6 @@ const ChallengeCard = ({ challenge, index, isRTL }) => {
                 </pre>
               </div>
 
-              {/* Output */}
               <div>
                 <span className="text-[10px] font-medium text-muted flex items-center gap-1 mb-2">
                   <FaPlay className="text-green-400" /> Output
