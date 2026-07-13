@@ -131,7 +131,7 @@ const Home = () => {
                 </motion.button>
               </Link>
               
-              <a href="/eslam_abosife.pdf" download>
+              <a href="/Eslam_Abosife_CV.pdf" download>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -150,7 +150,7 @@ const Home = () => {
               className={`flex gap-2 sm:gap-3 mt-4 sm:mt-6 ${isRTL ? '' : ''}`}
             >
               <a 
-                href="https://github.com/eslamabosife" 
+                href="https://github.com/eslam1abosife" 
                 target="_blank" 
                 className="p-2 sm:p-3 rounded-xl border transition-all group"
                 style={{ 
