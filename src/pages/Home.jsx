@@ -131,7 +131,7 @@ const Home = () => {
                 </motion.button>
               </Link>
               
-              <a href="/Eslam-Abosife.pdf" download>
+              <a href="/eslam_abosife.pdf" download>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
