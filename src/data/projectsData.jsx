@@ -33,7 +33,13 @@ import EllaEcommre from "../assets/image5.png";
 import RealEstate from "../assets/image6.png";
 import AlSerajAlMunir from "../assets/image8.png";
 import Profile from "../assets/image9.png";
-
+import EngazCompany from "../assets/image10.png";
+import SpecialDesign from "../assets/image11.png";
+import ElzeroTemplate from "../assets/image12.png";
+import LightCode from "../assets/image13.png";
+import DashboardUI from "../assets/image14.png";
+import KasperTemplate from "../assets/image15.png";
+import BondiTemplate from "../assets/image16.png";
 
 
 
@@ -204,7 +210,7 @@ export const htmlCssProjects = [
     icon: <FaHtml5 className="text-orange-500" />,
     link: "https://engaz-company-red.vercel.app/",
     github: "https://github.com/eslam1abosife/EngazCompany",
-    image: "https://via.placeholder.com/400x200/1e3a8a/ffffff?text=Engaz+Company"
+    image: EngazCompany
   },
   {
     id: 11,
@@ -216,7 +222,7 @@ export const htmlCssProjects = [
     icon: <FaHtml5 className="text-orange-500" />,
     link: "https://eslam1abosife.github.io/specialdesign/",
     github: "https://github.com/eslam1abosife/specialdesign",
-    image: "https://via.placeholder.com/400x200/f97316/ffffff?text=Special+Design",
+    image: SpecialDesign,
   },
   {
     id: 12,
@@ -227,7 +233,9 @@ export const htmlCssProjects = [
     tech: ["HTML", "CSS", "JavaScript"],
     icon: <FaCss3Alt className="text-blue-500" />,
     github: "https://github.com/eslam1abosife/Elzero",
-    image: "https://via.placeholder.com/400x200/06b6d4/ffffff?text=Elzero+Template",
+     link: " https://eslam1abosife.github.io/Elzero/",
+   
+    image: ElzeroTemplate,
   },
   {
     id: 13,
@@ -239,7 +247,7 @@ export const htmlCssProjects = [
     icon: <FaCss3Alt className="text-blue-500" />,
     link: "https://eslam1abosife.github.io/LightCode/",
     github: "https://github.com/eslam1abosife/LightCode",
-    image: "https://via.placeholder.com/400x200/fbbf24/ffffff?text=LightCode",
+    image: LightCode,
   },
   {
     id: 14,
@@ -250,7 +258,8 @@ export const htmlCssProjects = [
     tech: ["HTML", "CSS"],
     icon: <FaHtml5 className="text-orange-500" />,
     github: "https://github.com/eslam1abosife/Dashboard",
-    image: "https://via.placeholder.com/400x200/8b5cf6/ffffff?text=Dashboard+UI",
+    link: "https://eslam1abosife.github.io/Dashboard/",
+    image: DashboardUI,
   },
   {
     id: 15,
@@ -261,7 +270,9 @@ export const htmlCssProjects = [
     tech: ["HTML", "CSS"],
     icon: <FaCss3Alt className="text-blue-500" />,
     github: "https://github.com/eslam1abosife/Kasper",
-    image: "https://via.placeholder.com/400x200/ef4444/ffffff?text=Kasper+Template",
+      link: "https://eslam1abosife.github.io/Kasper/",
+    
+    image: KasperTemplate,
   },
   {
     id: 16,
@@ -273,7 +284,7 @@ export const htmlCssProjects = [
     icon: <FaHtml5 className="text-orange-500" />,
     link: "https://eslam1abosife.github.io/Bondi/",
     github: "https://github.com/eslam1abosife/Bondi",
-    image: "https://via.placeholder.com/400x200/3b82f6/ffffff?text=Bondi+Template",
+    image: BondiTemplate,
   },
 ];
 
