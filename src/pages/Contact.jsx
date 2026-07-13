@@ -56,7 +56,7 @@ const Contact = () => {
       icon: <FaGithub className="text-2xl text-accent" />,
       label: 'GitHub',
       value: 'github.com/eslamabosife',
-      link: 'https://github.com/eslamabosife'
+      link: 'https://github.com/eslam1abosife'
     },
     {
       icon: <FaLinkedin className="text-2xl text-accent" />,
@@ -136,7 +136,7 @@ const Contact = () => {
               </p>
               <div className="flex gap-3">
                 {[
-                  { icon: <FaGithub />, link: 'https://github.com/eslamabosife', color: 'hover:text-gray-400' },
+                  { icon: <FaGithub />, link: 'https://github.com/eslam1abosife', color: 'hover:text-gray-400' },
                   { icon: <FaLinkedin />, link: '#', color: 'hover:text-blue-500' },
                   { icon: <FaEnvelope />, link: 'mailto:eslamabosife69@gmail.com', color: 'hover:text-red-500' }
                 ].map((social, index) => (

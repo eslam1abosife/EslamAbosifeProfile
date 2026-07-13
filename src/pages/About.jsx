@@ -23,9 +23,9 @@ const About = () => {
 
   const stats = [
     { icon: <FaUserGraduate />, value: '2+', label: isRTL ? 'سنوات خبرة' : 'Years Experience' },
-    { icon: <FaCode />, value: '6+', label: isRTL ? 'مشاريع' : 'Projects' },
+    { icon: <FaCode />, value: '10+', label: isRTL ? 'مشاريع' : 'Projects' },
     { icon: <FaGraduationCap />, value: '2021', label: isRTL ? 'بداية الجامعة' : 'University Start' },
-    { icon: <GiBrain />, value: '10+', label: isRTL ? 'مشكلة محلولة' : 'Problems Solved' },
+    { icon: <GiBrain />, value: '100+', label: isRTL ? 'مشكلة محلولة' : 'Problems Solved' },
   ]
 
   return (

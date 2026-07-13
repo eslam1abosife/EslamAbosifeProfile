@@ -15,10 +15,14 @@ import {
   blazorProjects,
 } from "../data/projectsData";
 
-// استيراد الكومبوننتات (مع Lazy Loading)
+// استيراد الكومبوننتات
 const SectionHeader = lazy(() => import("../components/SectionHeader"));
 const ProjectCard = lazy(() => import("../components/ProjectCard"));
 const ChallengeCard = lazy(() => import("../components/ChallengeCard"));
+
+// ✅ استيراد Skeleton Cards
+import SkeletonCard from "../components/SkeletonCard";
+import SkeletonChallengeCard from "../components/SkeletonChallengeCard";
 
 const Projects = () => {
   const { language } = useLanguage();
@@ -28,15 +32,15 @@ const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState({});
   const [loading, setLoading] = useState(true);
-  const itemsPerPage = 6; // عدد التحديات في كل صفحة
+  const itemsPerPage = 6;
 
   // محاكاة تحميل البيانات
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 300);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  // تعريف الأقسام مع تحديد是否需要 Pagination
+  // تعريف الأقسام
   const sections = useMemo(() => [
     {
       id: "vue",
@@ -44,7 +48,8 @@ const Projects = () => {
       icon: <FaVuejs className="text-green-400" />,
       data: vueProjects,
       component: ProjectCard,
-      hasPagination: false, // ❌ بدون Pagination
+      skeletonComponent: SkeletonCard, // ✅ Skeleton خاص
+      hasPagination: false,
     },
     {
       id: "blazor",
@@ -52,7 +57,8 @@ const Projects = () => {
       icon: <SiDotnet className="text-purple-400" />,
       data: blazorProjects,
       component: ProjectCard,
-      hasPagination: false, // ❌ بدون Pagination
+      skeletonComponent: SkeletonCard,
+      hasPagination: false,
     },
     {
       id: "react",
@@ -60,7 +66,8 @@ const Projects = () => {
       icon: <FaReact className="text-blue-400" />,
       data: reactProjects,
       component: ProjectCard,
-      hasPagination: false, // ❌ بدون Pagination
+      skeletonComponent: SkeletonCard,
+      hasPagination: false,
     },
     {
       id: "html-css",
@@ -68,7 +75,8 @@ const Projects = () => {
       icon: <FaHtml5 className="text-orange-500" />,
       data: htmlCssProjects,
       component: ProjectCard,
-      hasPagination: false, // ❌ بدون Pagination
+      skeletonComponent: SkeletonCard,
+      hasPagination: false,
     },
     {
       id: "cpp-challenges",
@@ -76,7 +84,8 @@ const Projects = () => {
       icon: <SiCplusplus className="text-blue-500" />,
       data: cppChallenges,
       component: ChallengeCard,
-      hasPagination: true, // ✅ مع Pagination
+      skeletonComponent: SkeletonChallengeCard, // ✅ Skeleton خاص بالتحديات
+      hasPagination: true,
     },
     {
       id: "js",
@@ -84,7 +93,8 @@ const Projects = () => {
       icon: <SiJavascript className="text-yellow-400" />,
       data: jsChallenges,
       component: ChallengeCard,
-      hasPagination: true, // ✅ مع Pagination
+      skeletonComponent: SkeletonChallengeCard,
+      hasPagination: true,
     },
   ], [t, isRTL]);
 
@@ -101,7 +111,7 @@ const Projects = () => {
     );
   }, [searchTerm]);
 
-  // Pagination functions (للتحديات فقط)
+  // Pagination functions
   const paginate = useCallback((items, sectionId) => {
     const page = currentPage[sectionId] || 1;
     const startIndex = (page - 1) * itemsPerPage;
@@ -119,16 +129,11 @@ const Projects = () => {
     }));
   }, []);
 
-  // Loading State
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-12 h-12 border-4 border-accent/30 border-t-accent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-muted">{isRTL ? 'جاري التحميل...' : 'Loading...'}</p>
-        </div>
-      </div>
-    );
+  // ✅ عرض Skeleton Cards أثناء التحميل
+  const renderSkeletons = (SkeletonComponent, count = 6) => {
+    return Array.from({ length: count }).map((_, i) => (
+      <SkeletonComponent key={i} isRTL={isRTL} />
+    ))
   }
 
   return (
@@ -181,9 +186,30 @@ const Projects = () => {
         <div className="space-y-12">
           {sections.map((section) => {
             const filteredData = filterProjects(section.data);
-            if (filteredData.length === 0) return null;
+            const hasData = filteredData.length > 0;
 
-            // ✅ تحديد البيانات المعروضة (مع أو بدون Pagination)
+            // ✅ عرض Skeleton إذا كان loading
+            if (loading) {
+              return (
+                <div key={section.id}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-3 rounded-xl bg-accent/10">
+                      <span className="text-2xl">{section.icon}</span>
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-bold text-primary">{section.title}</h2>
+                      <p className="text-sm text-muted">{isRTL ? 'جاري التحميل...' : 'Loading...'}</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {renderSkeletons(section.skeletonComponent, 6)}
+                  </div>
+                </div>
+              )
+            }
+
+            if (!hasData) return null;
+
             let displayData = filteredData;
             let totalPages = 1;
             let page = 1;
@@ -209,7 +235,13 @@ const Projects = () => {
                 </Suspense>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <Suspense fallback={<div className="col-span-full text-center py-10">{isRTL ? 'جاري التحميل...' : 'Loading...'}</div>}>
+                  <Suspense 
+                    fallback={
+                      <div className="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {renderSkeletons(section.skeletonComponent, 6)}
+                      </div>
+                    }
+                  >
                     {displayData.map((item, index) => {
                       if (!item) return null;
 
@@ -235,7 +267,7 @@ const Projects = () => {
                   </Suspense>
                 </div>
 
-                {/* ✅ Pagination Controls (للتحديات فقط) */}
+                {/* Pagination Controls */}
                 {section.hasPagination && totalPages > 1 && (
                   <div className="flex justify-center items-center gap-4 mt-6">
                     <button
@@ -273,7 +305,7 @@ const Projects = () => {
         </div>
 
         {/* No Results */}
-        {sections.every((s) => filterProjects(s.data).length === 0) && (
+        {!loading && sections.every((s) => filterProjects(s.data).length === 0) && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
