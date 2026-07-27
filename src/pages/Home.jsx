@@ -161,7 +161,7 @@ const Home = () => {
                 <FaGithub className="text-base sm:text-xl text-secondary group-hover:text-accent transition-colors" />
               </a>
               <a 
-                href="#" 
+                href="https://www.linkedin.com/in/eslam-abosife-aa1b222ab/?skipRedirect=true" 
                 target="_blank" 
                 className="p-2 sm:p-3 rounded-xl border transition-all group"
                 style={{ 

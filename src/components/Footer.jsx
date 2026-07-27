@@ -9,8 +9,8 @@ const Footer = () => {
   const isRTL = language === 'ar'
 
   const socialLinks = [
-    { icon: <FaGithub />, link: 'https://github.com/eslamabosife', label: 'GitHub' },
-    { icon: <FaLinkedin />, link: '#', label: 'LinkedIn' },
+    { icon: <FaGithub />, link: 'https://github.com/eslam1abosife', label: 'GitHub' },
+    { icon: <FaLinkedin />, link: 'https://www.linkedin.com/in/eslam-abosife-aa1b222ab/?skipRedirect=true', label: 'LinkedIn' },
     { icon: <FaEnvelope />, link: 'mailto:eslamabosife69@gmail.com', label: 'Email' },
     { icon: <FaPhone />, link: 'tel:01201253897', label: 'Phone' },
   ]
