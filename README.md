@@ -1,45 +1,40 @@
-# Eslam Abosife - Personal Portfolio 🌐
+# Eslam Abosife — Portfolio
 
-My personal portfolio website showcasing my projects and skills as a Front-End Developer.
+Personal portfolio website showcasing my work as a Front-End Developer.
 
-### 🔗 Live Demo
-[https://eslam-abosife-profile-two.vercel.app](https://eslam-abosife-profile-two.vercel.app)
+**Live Demo:** [eslam-abosife-profile-two.vercel.app](https://eslam-abosife-profile-two.vercel.app)
 
 ---
 
-### ✨ Features
+### Features
+
 - Modern and clean design
-- Fully responsive
+- Fully responsive layout
 - Smooth animations
 - Projects showcase
 - Contact section
 
 ---
 
-### 🛠️ Tech Stack
-- JavaScript
-- Vite
-- HTML5 / CSS3
-- Vercel (Deployment)
+### Tech Stack
+
+- JavaScript · Vite
+- HTML5 · CSS3
+- Vercel
 
 ---
 
-### 🚀 Getting Started
+### Getting Started
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
 npm run build
 ```
 
 ---
 
-### 👨‍💻 Author
-**Eslam Abosife**  
-Front-End Developer  
-[GitHub](https://github.com/eslam1abosife) • [Portfolio](https://eslam-abosife-profile-two.vercel.app)
+### Author
+
+**Eslam Abosife** — Front-End Developer  
+[GitHub](https://github.com/eslam1abosife) · [Portfolio](https://eslam-abosife-profile-two.vercel.app)
