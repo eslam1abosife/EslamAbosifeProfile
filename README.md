@@ -1,16 +1,40 @@
-# React + Vite
+# Eslam Abosife — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio website showcasing my work as a Front-End Developer.
 
-Currently, two official plugins are available:
+**Live Demo:** [eslam-abosife-profile-two.vercel.app](https://eslam-abosife-profile-two.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+### Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Modern and clean design
+- Fully responsive layout
+- Smooth animations
+- Projects showcase
+- Contact section
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Tech Stack
+
+- JavaScript · Vite
+- HTML5 · CSS3
+- Vercel
+
+---
+
+### Getting Started
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+---
+
+### Author
+
+**Eslam Abosife** — Front-End Developer  
+[GitHub](https://github.com/eslam1abosife) · [Portfolio](https://eslam-abosife-profile-two.vercel.app)
