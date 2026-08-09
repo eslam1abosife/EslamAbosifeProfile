@@ -2,183 +2,191 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Light Mode */
-  :root {
-    --bg-primary: #ffffff;
-    --bg-secondary: #f5f5f7;
-    --bg-card: #f8f8fa;
-    --text-primary: #1a1a2e;
-    --text-secondary: #4a4a5a;
-    --text-muted: #8a8a9a;
-    --border-color: #e5e5e8;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --glow-color: rgba(170, 59, 255, 0.15);
-    --accent: #aa3bff;
-    --accent-bg: rgba(170, 59, 255, 0.08);
-    --accent-border: rgba(170, 59, 255, 0.3);
-  }
-
-  /* Dark Mode */
-  .dark {
-    --bg-primary: #0d0d14;
-    --bg-secondary: #16171d;
-    --bg-card: #1a1b24;
-    --text-primary: #f3f4f6;
-    --text-secondary: #c8c9d6;
-    --text-muted: #6b6d7a;
-    --border-color: #2a2b35;
-    --shadow-color: rgba(0, 0, 0, 0.4);
-    --glow-color: rgba(170, 59, 255, 0.25);
-    --accent-bg: rgba(170, 59, 255, 0.12);
-    --accent-border: rgba(170, 59, 255, 0.4);
-  }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  #root {
-    max-width: 1126px;
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    border-inline: 1px solid var(--border-color);
-    background: var(--bg-primary);
-    transition: background 0.3s ease, border-color 0.3s ease;
-    position: relative;
-    padding-top: 0;
-  }
+/* Light Mode */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-card: #f8f8fa;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a5a;
+  --text-muted: #8a8a9a;
+  --border-color: #e5e5e8;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --glow-color: rgba(170, 59, 255, 0.15);
+  --accent: #aa3bff;
+  --accent-bg: rgba(170, 59, 255, 0.08);
+  --accent-border: rgba(170, 59, 255, 0.3);
 }
 
-@layer components {
-  .glass-effect {
-    @apply backdrop-blur-xl border;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--border-color);
-    transition: background 0.3s ease, border-color 0.3s ease;
-  }
-  
-  .dark .glass-effect {
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-accent via-purple-400 to-pink-400 bg-clip-text text-transparent;
-    background-size: 200% auto;
-    animation: shimmer 4s ease-in-out infinite;
-  }
-
-  .card-custom {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 20px var(--shadow-color);
-  }
-
-  .btn-primary {
-    @apply px-6 py-3 bg-gradient-to-r from-accent to-purple-500 rounded-xl font-semibold text-white shadow-lg shadow-accent/50 hover:shadow-2xl transition-all text-sm;
-  }
-
-  .btn-secondary {
-    @apply px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all text-sm border;
-    background: var(--bg-card);
-    border-color: var(--border-color);
-    color: var(--text-primary);
-  }
-  .btn-secondary:hover {
-    background: var(--bg-secondary);
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 200% center; }
-  }
-
-  @keyframes spin-slow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 8s linear infinite;
-  }
+/* Dark Mode - لازم تكون على html.dark */
+html.dark {
+  --bg-primary: #0d0d14;
+  --bg-secondary: #16171d;
+  --bg-card: #1a1b24;
+  --text-primary: #f3f4f6;
+  --text-secondary: #c8c9d6;
+  --text-muted: #6b6d7a;
+  --border-color: #2a2b35;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --glow-color: rgba(170, 59, 255, 0.25);
+  --accent-bg: rgba(170, 59, 255, 0.12);
+  --accent-border: rgba(170, 59, 255, 0.4);
 }
 
-/* ============================================
-   تنسيقات صفحة الأسئلة (Interview Questions)
-   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* تنسيق العناوين */
-.questions-page h1,
-.questions-page h2,
-.questions-page h3 {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 1126px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-inline: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  padding-top: 0;
+}
+
+/* ===== مكونات عامة ===== */
+.glass-effect {
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+html.dark .glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #aa3bff, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+.card-custom {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, #aa3bff, #8b5cf6);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 20px rgba(170, 59, 255, 0.4);
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 30px rgba(170, 59, 255, 0.5);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
   color: var(--text-primary);
 }
+.btn-secondary:hover {
+  background: var(--bg-secondary);
+}
 
-/* تنسيق بطاقات الأسئلة */
+/* ===== أنيميشن ===== */
+@keyframes shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* ===== صفحة الأسئلة ===== */
 .question-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px var(--shadow-color);
+  border-radius: 1rem;
+  overflow: hidden;
 }
-
 .question-card:hover {
   box-shadow: 0 8px 30px var(--shadow-color);
   border-color: var(--accent-border);
 }
-
 .question-card.open {
   border-color: var(--accent);
   box-shadow: 0 0 30px var(--glow-color);
 }
 
-/* تنسيق أرقام الأسئلة */
 .question-number {
   background: var(--accent-bg);
   color: var(--accent);
   border: 2px solid var(--accent-border);
 }
 
-/* تنسيق الأزرار (Tags) */
 .tag-button {
   transition: all 0.3s ease;
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
   background: var(--bg-secondary);
+  padding: 0.375rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
 }
-
 .tag-button:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 15px var(--shadow-color);
   border-color: var(--accent);
   color: var(--accent);
 }
-
 .tag-button.active {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-bg);
 }
 
-/* تنسيق الألوان الخاصة بكل تاغ */
+/* ===== تنسيقات الـ Tags ===== */
 .tag-javascript {
   background: rgba(59, 130, 246, 0.1);
   color: #3b82f6;
@@ -188,11 +196,11 @@
   background: rgba(59, 130, 246, 0.2);
   border-color: #3b82f6;
 }
-.dark .tag-javascript {
+html.dark .tag-javascript {
   background: rgba(59, 130, 246, 0.2);
   color: #60a5fa;
 }
-.dark .tag-javascript:hover {
+html.dark .tag-javascript:hover {
   background: rgba(59, 130, 246, 0.3);
 }
 
@@ -205,11 +213,11 @@
   background: rgba(52, 211, 153, 0.2);
   border-color: #10b981;
 }
-.dark .tag-vue {
+html.dark .tag-vue {
   background: rgba(52, 211, 153, 0.2);
   color: #34d399;
 }
-.dark .tag-vue:hover {
+html.dark .tag-vue:hover {
   background: rgba(52, 211, 153, 0.3);
 }
 
@@ -222,11 +230,11 @@
   background: rgba(239, 68, 68, 0.2);
   border-color: #ef4444;
 }
-.dark .tag-security {
+html.dark .tag-security {
   background: rgba(239, 68, 68, 0.2);
   color: #f87171;
 }
-.dark .tag-security:hover {
+html.dark .tag-security:hover {
   background: rgba(239, 68, 68, 0.3);
 }
 
@@ -239,11 +247,11 @@
   background: rgba(139, 92, 246, 0.2);
   border-color: #8b5cf6;
 }
-.dark .tag-htmlcss {
+html.dark .tag-htmlcss {
   background: rgba(139, 92, 246, 0.2);
   color: #a78bfa;
 }
-.dark .tag-htmlcss:hover {
+html.dark .tag-htmlcss:hover {
   background: rgba(139, 92, 246, 0.3);
 }
 
@@ -256,11 +264,11 @@
   background: rgba(251, 146, 60, 0.2);
   border-color: #f97316;
 }
-.dark .tag-git {
+html.dark .tag-git {
   background: rgba(251, 146, 60, 0.2);
   color: #fb923c;
 }
-.dark .tag-git:hover {
+html.dark .tag-git:hover {
   background: rgba(251, 146, 60, 0.3);
 }
 
@@ -273,11 +281,11 @@
   background: rgba(107, 114, 128, 0.2);
   border-color: #6b7280;
 }
-.dark .tag-linux {
+html.dark .tag-linux {
   background: rgba(107, 114, 128, 0.2);
   color: #9ca3af;
 }
-.dark .tag-linux:hover {
+html.dark .tag-linux:hover {
   background: rgba(107, 114, 128, 0.3);
 }
 
@@ -290,20 +298,19 @@
   background: rgba(20, 184, 166, 0.2);
   border-color: #14b8a6;
 }
-.dark .tag-nodejs {
+html.dark .tag-nodejs {
   background: rgba(20, 184, 166, 0.2);
   color: #2dd4bf;
 }
-.dark .tag-nodejs:hover {
+html.dark .tag-nodejs:hover {
   background: rgba(20, 184, 166, 0.3);
 }
 
-/* تنسيق محتوى الإجابة */
+/* ===== محتوى الإجابة ===== */
 .answer-content {
   color: var(--text-secondary);
   line-height: 1.8;
 }
-
 .answer-content code {
   background: var(--bg-secondary);
   color: var(--accent);
@@ -312,7 +319,6 @@
   font-size: 0.9em;
   border: 1px solid var(--border-color);
 }
-
 .answer-content pre {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -320,79 +326,47 @@
   padding: 1rem;
   overflow-x: auto;
 }
-
 .answer-content ul,
 .answer-content ol {
   padding-right: 1.5rem;
   margin: 0.5rem 0;
 }
-
 .answer-content li {
   margin-bottom: 0.25rem;
 }
-
 .answer-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
 }
-
 .answer-content table th,
 .answer-content table td {
   border: 1px solid var(--border-color);
   padding: 0.5rem 1rem;
   text-align: right;
 }
-
 .answer-content table th {
   background: var(--bg-secondary);
   font-weight: 600;
 }
 
-/* تنسيق زر "فتح الكل / إغلاق الكل" */
-.toggle-all-btn {
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 1px solid var(--accent-border);
-  transition: all 0.3s ease;
-}
-
-.toggle-all-btn:hover {
-  background: var(--accent);
-  color: white;
-  border-color: var(--accent);
-}
-
-/* تنسيق الفوتر */
-.questions-footer {
-  border-top: 1px solid var(--border-color);
-  color: var(--text-muted);
-}
-
-/* تنسيقات الكود في الدارك مود */
-.dark .answer-content code {
+html.dark .answer-content code {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
 }
-
-.dark .answer-content pre {
+html.dark .answer-content pre {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.05);
 }
-
-.dark .answer-content table th {
+html.dark .answer-content table th {
   background: rgba(255, 255, 255, 0.05);
 }
-
-.dark .answer-content table th,
-.dark .answer-content table td {
+html.dark .answer-content table th,
+html.dark .answer-content table td {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* ============================================
-   باقي تنسيقات الموقع
-   ============================================ */
-
+/* ===== باقي تنسيقات الموقع ===== */
 .counter {
   font-size: 16px;
   padding: 5px 10px;
@@ -403,11 +377,9 @@
   transition: border-color 0.3s;
   margin-bottom: 24px;
 }
-
 .counter:hover {
   border-color: var(--accent-border);
 }
-
 .counter:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -416,32 +388,27 @@
 .hero {
   position: relative;
 }
-
 .hero .base,
 .hero .framework,
 .hero .vite {
   inset-inline: 0;
   margin: 0 auto;
 }
-
 .hero .base {
   width: 170px;
   position: relative;
   z-index: 0;
 }
-
 .hero .framework,
 .hero .vite {
   position: absolute;
 }
-
 .hero .framework {
   z-index: 1;
   top: 34px;
   height: 28px;
   transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
 }
-
 .hero .vite {
   z-index: 0;
   top: 107px;
@@ -458,7 +425,6 @@
   place-items: center;
   flex-grow: 1;
 }
-
 @media (max-width: 1024px) {
   #center {
     padding: 32px 20px 24px;
@@ -471,42 +437,35 @@
   border-top: 1px solid var(--border-color);
   text-align: left;
 }
-
 #next-steps > div {
   flex: 1 1 0;
   padding: 32px;
 }
-
 @media (max-width: 1024px) {
   #next-steps > div {
     padding: 24px 20px;
   }
 }
-
 #next-steps .icon {
   margin-bottom: 16px;
   width: 22px;
   height: 22px;
 }
-
 @media (max-width: 1024px) {
   #next-steps {
     flex-direction: column;
     text-align: center;
   }
 }
-
 #docs {
   border-right: 1px solid var(--border-color);
 }
-
 @media (max-width: 1024px) {
   #docs {
     border-right: none;
     border-bottom: 1px solid var(--border-color);
   }
 }
-
 #next-steps ul {
   list-style: none;
   padding: 0;
@@ -514,11 +473,9 @@
   gap: 8px;
   margin: 32px 0 0;
 }
-
 #next-steps ul .logo {
   height: 18px;
 }
-
 #next-steps ul a {
   color: var(--text-primary);
   font-size: 16px;
@@ -531,16 +488,13 @@
   text-decoration: none;
   transition: box-shadow 0.3s;
 }
-
 #next-steps ul a:hover {
   box-shadow: 0 4px 15px var(--shadow-color);
 }
-
 #next-steps ul a .button-icon {
   height: 18px;
   width: 18px;
 }
-
 @media (max-width: 1024px) {
   #next-steps ul {
     margin-top: 20px;
@@ -561,7 +515,6 @@
   height: 88px;
   border-top: 1px solid var(--border-color);
 }
-
 @media (max-width: 1024px) {
   #spacer {
     height: 48px;
@@ -572,7 +525,6 @@
   position: relative;
   width: 100%;
 }
-
 .ticks::before,
 .ticks::after {
   content: '';
@@ -580,12 +532,10 @@
   top: -4.5px;
   border: 5px solid transparent;
 }
-
 .ticks::before {
   left: 0;
   border-left-color: var(--border-color);
 }
-
 .ticks::after {
   right: 0;
   border-right-color: var(--border-color);
