@@ -125,6 +125,13 @@
    تنسيقات صفحة الأسئلة (Interview Questions)
    ============================================ */
 
+/* تنسيق العناوين */
+.questions-page h1,
+.questions-page h2,
+.questions-page h3 {
+  color: var(--text-primary);
+}
+
 /* تنسيق بطاقات الأسئلة */
 .question-card {
   background: var(--bg-card);
@@ -169,6 +176,126 @@
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-bg);
+}
+
+/* تنسيق الألوان الخاصة بكل تاغ */
+.tag-javascript {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+.tag-javascript:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+}
+.dark .tag-javascript {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+.dark .tag-javascript:hover {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+.tag-vue {
+  background: rgba(52, 211, 153, 0.1);
+  color: #10b981;
+  border-color: rgba(52, 211, 153, 0.3);
+}
+.tag-vue:hover {
+  background: rgba(52, 211, 153, 0.2);
+  border-color: #10b981;
+}
+.dark .tag-vue {
+  background: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+}
+.dark .tag-vue:hover {
+  background: rgba(52, 211, 153, 0.3);
+}
+
+.tag-security {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+.tag-security:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+.dark .tag-security {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+.dark .tag-security:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+.tag-htmlcss {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border-color: rgba(139, 92, 246, 0.3);
+}
+.tag-htmlcss:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: #8b5cf6;
+}
+.dark .tag-htmlcss {
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+}
+.dark .tag-htmlcss:hover {
+  background: rgba(139, 92, 246, 0.3);
+}
+
+.tag-git {
+  background: rgba(251, 146, 60, 0.1);
+  color: #f97316;
+  border-color: rgba(251, 146, 60, 0.3);
+}
+.tag-git:hover {
+  background: rgba(251, 146, 60, 0.2);
+  border-color: #f97316;
+}
+.dark .tag-git {
+  background: rgba(251, 146, 60, 0.2);
+  color: #fb923c;
+}
+.dark .tag-git:hover {
+  background: rgba(251, 146, 60, 0.3);
+}
+
+.tag-linux {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+  border-color: rgba(107, 114, 128, 0.3);
+}
+.tag-linux:hover {
+  background: rgba(107, 114, 128, 0.2);
+  border-color: #6b7280;
+}
+.dark .tag-linux {
+  background: rgba(107, 114, 128, 0.2);
+  color: #9ca3af;
+}
+.dark .tag-linux:hover {
+  background: rgba(107, 114, 128, 0.3);
+}
+
+.tag-nodejs {
+  background: rgba(20, 184, 166, 0.1);
+  color: #14b8a6;
+  border-color: rgba(20, 184, 166, 0.3);
+}
+.tag-nodejs:hover {
+  background: rgba(20, 184, 166, 0.2);
+  border-color: #14b8a6;
+}
+.dark .tag-nodejs {
+  background: rgba(20, 184, 166, 0.2);
+  color: #2dd4bf;
+}
+.dark .tag-nodejs:hover {
+  background: rgba(20, 184, 166, 0.3);
 }
 
 /* تنسيق محتوى الإجابة */
@@ -260,4 +387,206 @@
 .dark .answer-content table th,
 .dark .answer-content table td {
   border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   باقي تنسيقات الموقع
+   ============================================ */
+
+.counter {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+  margin-bottom: 24px;
+}
+
+.counter:hover {
+  border-color: var(--accent-border);
+}
+
+.counter:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero .base,
+.hero .framework,
+.hero .vite {
+  inset-inline: 0;
+  margin: 0 auto;
+}
+
+.hero .base {
+  width: 170px;
+  position: relative;
+  z-index: 0;
+}
+
+.hero .framework,
+.hero .vite {
+  position: absolute;
+}
+
+.hero .framework {
+  z-index: 1;
+  top: 34px;
+  height: 28px;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
+}
+
+.hero .vite {
+  z-index: 0;
+  top: 107px;
+  height: 26px;
+  width: auto;
+  transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.8);
+}
+
+#center {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  place-content: center;
+  place-items: center;
+  flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+  #center {
+    padding: 32px 20px 24px;
+    gap: 18px;
+  }
+}
+
+#next-steps {
+  display: flex;
+  border-top: 1px solid var(--border-color);
+  text-align: left;
+}
+
+#next-steps > div {
+  flex: 1 1 0;
+  padding: 32px;
+}
+
+@media (max-width: 1024px) {
+  #next-steps > div {
+    padding: 24px 20px;
+  }
+}
+
+#next-steps .icon {
+  margin-bottom: 16px;
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 1024px) {
+  #next-steps {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+#docs {
+  border-right: 1px solid var(--border-color);
+}
+
+@media (max-width: 1024px) {
+  #docs {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+#next-steps ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+  margin: 32px 0 0;
+}
+
+#next-steps ul .logo {
+  height: 18px;
+}
+
+#next-steps ul a {
+  color: var(--text-primary);
+  font-size: 16px;
+  border-radius: 6px;
+  background: var(--bg-secondary);
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: box-shadow 0.3s;
+}
+
+#next-steps ul a:hover {
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+#next-steps ul a .button-icon {
+  height: 18px;
+  width: 18px;
+}
+
+@media (max-width: 1024px) {
+  #next-steps ul {
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #next-steps ul li {
+    flex: 1 1 calc(50% - 8px);
+  }
+  #next-steps ul a {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+
+#spacer {
+  height: 88px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 1024px) {
+  #spacer {
+    height: 48px;
+  }
+}
+
+.ticks {
+  position: relative;
+  width: 100%;
+}
+
+.ticks::before,
+.ticks::after {
+  content: '';
+  position: absolute;
+  top: -4.5px;
+  border: 5px solid transparent;
+}
+
+.ticks::before {
+  left: 0;
+  border-left-color: var(--border-color);
+}
+
+.ticks::after {
+  right: 0;
+  border-right-color: var(--border-color);
 }
