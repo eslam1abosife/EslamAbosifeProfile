@@ -15,6 +15,8 @@
     --shadow-color: rgba(0, 0, 0, 0.08);
     --glow-color: rgba(170, 59, 255, 0.15);
     --accent: #aa3bff;
+    --accent-bg: rgba(170, 59, 255, 0.08);
+    --accent-border: rgba(170, 59, 255, 0.3);
   }
 
   /* Dark Mode */
@@ -28,6 +30,8 @@
     --border-color: #2a2b35;
     --shadow-color: rgba(0, 0, 0, 0.4);
     --glow-color: rgba(170, 59, 255, 0.25);
+    --accent-bg: rgba(170, 59, 255, 0.12);
+    --accent-border: rgba(170, 59, 255, 0.4);
   }
 
   * {
@@ -43,14 +47,8 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family:
-      "Inter",
-      system-ui,
-      -apple-system,
-      sans-serif;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -63,9 +61,7 @@
     flex-direction: column;
     border-inline: 1px solid var(--border-color);
     background: var(--bg-primary);
-    transition:
-      background 0.3s ease,
-      border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
     position: relative;
     padding-top: 0;
   }
@@ -76,11 +72,9 @@
     @apply backdrop-blur-xl border;
     background: rgba(255, 255, 255, 0.05);
     border-color: var(--border-color);
-    transition:
-      background 0.3s ease,
-      border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
-
+  
   .dark .glass-effect {
     background: rgba(255, 255, 255, 0.03);
   }
@@ -94,10 +88,7 @@
   .card-custom {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    transition:
-      background 0.3s ease,
-      border-color 0.3s ease,
-      box-shadow 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 20px var(--shadow-color);
   }
 
@@ -116,67 +107,157 @@
   }
 
   @keyframes shimmer {
-    0%,
-    100% {
-      background-position: 0% center;
-    }
-    50% {
-      background-position: 200% center;
-    }
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 200% center; }
   }
 
   @keyframes spin-slow {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   .animate-spin-slow {
     animation: spin-slow 8s linear infinite;
   }
 }
-@import "tailwindcss";
 
-/* تحسين التنسيق العام */
-* {
-  box-sizing: border-box;
+/* ============================================
+   تنسيقات صفحة الأسئلة (Interview Questions)
+   ============================================ */
+
+/* تنسيق بطاقات الأسئلة */
+.question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px var(--shadow-color);
 }
 
-body {
-  margin: 0;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.question-card:hover {
+  box-shadow: 0 8px 30px var(--shadow-color);
+  border-color: var(--accent-border);
 }
 
-/* تحسين التمرير السلس */
-html {
-  scroll-behavior: smooth;
+.question-card.open {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px var(--glow-color);
 }
 
-/* تحسين الدارك مود للنصوص */
-.dark .prose {
-  color: #e5e7eb;
-}
-
-.dark .prose strong {
-  color: #f3f4f6;
-}
-
-.dark .prose code {
-  color: #60a5fa;
-}
-
-/* تحسين ظهور الأرقام */
+/* تنسيق أرقام الأسئلة */
 .question-number {
-  font-feature-settings: "tnum";
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 2px solid var(--accent-border);
 }
 
-/* تحسين الأزرار في الوضع المظلم */
-.dark .tag-button {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+/* تنسيق الأزرار (Tags) */
+.tag-button {
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}
+
+.tag-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.tag-button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
+/* تنسيق محتوى الإجابة */
+.answer-content {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.answer-content code {
+  background: var(--bg-secondary);
+  color: var(--accent);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border: 1px solid var(--border-color);
+}
+
+.answer-content pre {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.answer-content ul,
+.answer-content ol {
+  padding-right: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.answer-content li {
+  margin-bottom: 0.25rem;
+}
+
+.answer-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.answer-content table th,
+.answer-content table td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  text-align: right;
+}
+
+.answer-content table th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+}
+
+/* تنسيق زر "فتح الكل / إغلاق الكل" */
+.toggle-all-btn {
+  color: var(--accent);
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  transition: all 0.3s ease;
+}
+
+.toggle-all-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* تنسيق الفوتر */
+.questions-footer {
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+/* تنسيقات الكود في الدارك مود */
+.dark .answer-content code {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .answer-content pre {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark .answer-content table th {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .answer-content table th,
+.dark .answer-content table td {
+  border-color: rgba(255, 255, 255, 0.08);
 }

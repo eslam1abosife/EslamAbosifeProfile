@@ -1,4 +1,4 @@
-/* App.css - الكود الكامل مع إضافة تنسيقات صفحة الأسئلة مع الحفاظ على الألوان القديمة */
+@import "tailwindcss";
 
 @tailwind base;
 @tailwind components;
