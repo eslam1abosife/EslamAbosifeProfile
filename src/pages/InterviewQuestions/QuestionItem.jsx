@@ -8,7 +8,8 @@ const getCategoryTag = (category) => {
     htmlcss: '🎨 HTML/CSS',
     git: '🐙 Git',
     commandline: '💻 Linux',
-    backend: '⚙️ Node.js'
+    backend: '⚙️ Node.js',
+    cpp: '⚙️ C++' // ✅ أضفنا C++ هنا
   };
   return tags[category] || category;
 };

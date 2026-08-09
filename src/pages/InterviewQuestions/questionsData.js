@@ -11133,7 +11133,724 @@ grep "error" logs.txt | wc -l</code></pre>
       },
     ],
   },
+  cpp: {
+    title: "C++",
+    icon: "⚙️",
+    color: "blue",
+    questions: [
+      // ============================
+      // أساسيات ومفاهيم عامة (Basic)
+      // ============================
+      {
+        question: "ما هي لغة C++ وما الفرق بينها وبين C؟",
+        answer: `
+          <p><strong>C++</strong> هي لغة برمجة متعددة الاستخدامات، تم تطويرها كامتداد للغة C مع إضافة دعم <strong>البرمجة الكائنية (OOP)</strong>.</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>الفرق بين C و C++:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>C:</strong> لغة إجرائية (Procedure-oriented)، لا تدعم OOP.</li>
+                <li><strong>C++:</strong> لغة متعددة النماذج (Multi-paradigm)، تدعم OOP، البرمجة العامة (Generic)، والبرمجة الوظيفية.</li>
+                <li><strong>C++</strong> يضيف ميزات مثل: الفئات (Classes)، التحميل الزائد (Overloading)، الوراثة (Inheritance)، التوابع الافتراضية (Virtual Functions) [citation:12].</li>
+              </ul>
+            </li>
+          </ul>
+          <p class="mt-2"><strong>مميزات C++:</strong> أداء عالي، تحكم كامل في الذاكرة، مكتبة STL غنية، دعم للبرمجة متعددة الخيوط [citation:12].</p>
+        `,
+      },
+      {
+        question:
+          "ما هو الفرق بين المرجع (Reference) والمؤشر (Pointer) في C++؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong>المرجع (Reference):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>اسم مستعار (Alias) لمتغير موجود.</li>
+                <li><strong>يجب</strong> تهيئته عند التعريف.</li>
+                <li><strong>لا يمكن</strong> إعادة ربطه بمتغير آخر بعد التهيئة.</li>
+                <li>يُستخدم بالاسم مباشرة (بدون <code>*</code>).</li>
+                <li><strong>لا يمكن</strong> أن يكون <code>null</code>.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>المؤشر (Pointer):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>متغير يخزن <strong>عنوان</strong> متغير آخر.</li>
+                <li>يمكن تهيئته أو تركه غير مهيأ.</li>
+                <li><strong>يمكن</strong> إعادة ربطه بمتغير آخر.</li>
+                <li>يُستخدم مع <code>*</code> للوصول للقيمة (Dereferencing).</li>
+                <li><strong>يمكن</strong> أن يكون <code>nullptr</code>.</li>
+                <li>يدعم العمليات الحسابية (Pointer Arithmetic).</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>// Reference
+int x = 10;
+int &ref = x; // يجب التهيئة
+ref = 20;    // x = 20
 
+// Pointer
+int y = 10;
+int *ptr = &y; // يمكن التهيئة أو لا
+ptr = &x;      // يمكن إعادة الربط
+*ptr = 30;     // x = 30</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "ما هو مفهوم OOP في C++ وما هي مبادئه الأساسية؟",
+        answer: `
+          <p><strong>البرمجة الكائنية (OOP)</strong> هي نموذج برمجة يعتمد على مفهوم "الكائنات" التي تحتوي على بيانات ودوال [citation:11].</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>المبادئ الأربعة الأساسية:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>التغليف (Encapsulation):</strong> تجميع البيانات والدوال في وحدة واحدة (Class) والتحكم في الوصول إليها باستخدام <code>private</code>, <code>protected</code>, <code>public</code> [citation:7].</li>
+                <li><strong>الوراثة (Inheritance):</strong> إنشاء فئة جديدة (مشتقة) من فئة موجودة (أساسية) لوراثة خصائصها [citation:11].</li>
+                <li><strong>تعدد الأشكال (Polymorphism):</strong> قدرة الدوال على اتخاذ أشكال متعددة (Overloading و Overriding) [citation:7].</li>
+                <li><strong>التجريد (Abstraction):</strong> إخفاء التفاصيل الداخلية وإظهار فقط ما هو ضروري للمستخدم [citation:11].</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      {
+        question: "ما هو Class في C++؟",
+        answer: `
+          <p><strong>Class (الفئة)</strong> هو الهيكل الأساسي في C++ لتطبيق البرمجة الكائنية. يُعرّف الكائن (Object) من خلال تجميع <strong>البيانات (Member Variables)</strong> و <strong>الدوال (Member Functions)</strong> في وحدة واحدة [citation:12].</p>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>class Car {
+private:
+    string brand;
+    int speed;
+
+public:
+    Car(string b, int s) : brand(b), speed(s) {} // Constructor
+
+    void accelerate() {
+        speed += 10;
+    }
+
+    void displaySpeed() {
+        cout &lt;&lt; "Speed: " &lt;&lt; speed &lt;&lt; endl;
+    }
+};</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "ما هو Constructor و Destructor في C++؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong>Constructor (الدالة البانية):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>دالة خاصة تُستدعى <strong>تلقائياً</strong> عند إنشاء كائن من الفئة.</li>
+                <li>تُستخدم لـ <strong>تهيئة</strong> البيانات الأعضاء [citation:11].</li>
+                <li>لها نفس اسم الفئة، ولا تُعيد قيمة.</li>
+                <li>أنواعها: Default, Parameterized, Copy Constructor.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Destructor (الدالة المدمّرة):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>دالة خاصة تُستدعى <strong>تلقائياً</strong> عند تدمير الكائن (خروج عن النطاق).</li>
+                <li>تُستخدم لـ <strong>تحرير الموارد</strong> (مثل الذاكرة، الملفات) [citation:11].</li>
+                <li>لها نفس اسم الفئة مسبوقاً بـ <code>~</code>.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>class MyClass {
+public:
+    // Constructor
+    MyClass() {
+        cout &lt;&lt; "Object created" &lt;&lt; endl;
+    }
+
+    // Destructor
+    ~MyClass() {
+        cout &lt;&lt; "Object destroyed" &lt;&lt; endl;
+    }
+};</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "كيف تدير الذاكرة في C++ (Stack vs Heap)؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong>Stack (المكدس):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>تخزين <strong>تلقائي</strong> للذاكرة.</li>
+                <li>يُخصص للمتغيرات <strong>المحلية</strong> داخل الدوال.</li>
+                <li>سريع، لكن حجمه <strong>محدود</strong> [citation:4].</li>
+                <li>يُحرر تلقائياً عند الخروج من النطاق.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Heap (الكومة):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>تخزين <strong>يدوي</strong> للذاكرة.</li>
+                <li>يُخصص باستخدام <code>new</code> ويُحرر باستخدام <code>delete</code>.</li>
+                <li>أبطأ، لكن حجمه <strong>أكبر</strong> [citation:4].</li>
+                <li>يحتاج <strong>إدارة دقيقة</strong> لتجنب تسرب الذاكرة.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>// Stack allocation
+int x = 10; // تُحرر تلقائياً
+
+// Heap allocation
+int* ptr = new int(20); // تخصيص يدوي
+delete ptr; // يجب تحريرها يدوياً</code></pre>
+          </div>
+          <p class="mt-2"><strong>💡 نصيحة:</strong> استخدم الذكية (Smart Pointers) لتجنب تسرب الذاكرة [citation:4].</p>
+        `,
+      },
+      {
+        question: 'ما هو مفهوم "تعدد الأشكال" (Polymorphism) في C++؟',
+        answer: `
+          <p><strong>تعدد الأشكال (Polymorphism)</strong> هو قدرة الدوال على اتخاذ أشكال متعددة بناءً على السياق. ينقسم إلى نوعين [citation:7]:</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>Compile-time Polymorphism (ثابت):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>يُحل في وقت الترجمة.</li>
+                <li>مثال: <strong>Function Overloading</strong> و <strong>Operator Overloading</strong>.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Run-time Polymorphism (ديناميكي):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>يُحل في وقت التنفيذ.</li>
+                <li>مثال: استخدام <strong>Virtual Functions</strong> و <strong>Inheritance</strong> [citation:7].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>// Overloading (Compile-time)
+int add(int a, int b) { return a + b; }
+double add(double a, double b) { return a + b; }
+
+// Overriding (Run-time)
+class Base {
+public:
+    virtual void show() { cout &lt;&lt; "Base" &lt;&lt; endl; }
+};
+class Derived : public Base {
+public:
+    void show() override { cout &lt;&lt; "Derived" &lt;&lt; endl; }
+};</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "ما هو Virtual Function في C++؟",
+        answer: `
+          <p><strong>Virtual Function</strong> هي دالة في الفئة الأساسية (Base Class) تُصرّح بـ <code>virtual</code> لتسمح بـ <strong>تجاوزها (Overriding)</strong> في الفئات المشتقة (Derived Classes).</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>المميزات:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>تمكن من <strong>Runtime Polymorphism</strong> [citation:11].</li>
+                <li>يتم اختيار الدالة المناسبة في وقت التنفيذ بناءً على نوع الكائن (وليس نوع المرجع).</li>
+                <li>يتم إنشاء <strong>VTable</strong> (جدول التوابع الافتراضية) لكل فئة تحتوي على دوال افتراضية [citation:7].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>class Base {
+public:
+    virtual void print() {
+        cout &lt;&lt; "Base" &lt;&lt; endl;
+    }
+};
+
+class Derived : public Base {
+public:
+    void print() override {
+        cout &lt;&lt; "Derived" &lt;&lt; endl;
+    }
+};
+
+Base* obj = new Derived();
+obj-&gt;print(); // يطبع "Derived" (يُحل في وقت التنفيذ)</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "ما هي Pure Virtual Function؟ وكيف تؤثر على الفئة؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong>Pure Virtual Function:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>دالة افتراضية يتم تعريفها بـ <code>virtual</code> مع <strong>لا تنفيذ</strong> (تُكتب <code>= 0</code>) [citation:7].</li>
+                <li>مثال: <code>virtual void draw() = 0;</code> [citation:7].</li>
+              </ul>
+            </li>
+            <li>
+              <strong>التأثير على الفئة:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>تصبح الفئة <strong>Abstract Class</strong> (فئة مجردة).</li>
+                <li><strong>لا يمكن</strong> إنشاء كائنات منها مباشرة.</li>
+                <li>تُستخدم كـ <strong>Interface</strong> لتفرض على الفئات المشتقة تنفيذ الدوال [citation:7].</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      {
+        question: "ما هو الفرق بين Overloading و Overriding في C++؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong>Overloading (التحميل الزائد):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>تعريف عدة دوال بنفس <strong>الاسم</strong> ولكن <strong>معاملات مختلفة</strong> (عدد، نوع).</li>
+                <li>يحدث في <strong>نفس النطاق</strong> (نفس الفئة).</li>
+                <li>يُحل في <strong>وقت الترجمة</strong> (Compile-time) [citation:11].</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Overriding (التجاوز):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>إعادة تعريف دالة افتراضية (Virtual) في فئة مشتقة بنفس <strong>الاسم والمعاملات</strong>.</li>
+                <li>يحدث بين <strong>فئات مختلفة</strong> (Base & Derived).</li>
+                <li>يُحل في <strong>وقت التنفيذ</strong> (Run-time) باستخدام <code>virtual</code> [citation:11].</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      // ============================
+      // Smart Pointers و RAII (متوسط)
+      // ============================
+      {
+        question: "ما هو مفهوم RAII في C++؟",
+        answer: `
+          <p><strong>RAII (Resource Acquisition Is Initialization)</strong> هو نمط برمجة في C++ يربط <strong>دورة حياة المورد</strong> (مثل الذاكرة، الملفات، الاتصالات) بـ <strong>دورة حياة الكائن</strong>.</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>المبدأ:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>يُكتسب المورد في <strong>Constructor</strong> (أو التهيئة).</li>
+                <li>يُحرر المورد في <strong>Destructor</strong>.</li>
+                <li>يضمن تحرير الموارد حتى عند حدوث <strong>استثناءات</strong> [citation:9].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>class FileHandler {
+private:
+    FILE* file;
+public:
+    FileHandler(const char* filename) {
+        file = fopen(filename, "r");
+    }
+    ~FileHandler() {
+        if (file) fclose(file); // يُحرر تلقائياً
+    }
+};</code></pre>
+          </div>
+          <p class="mt-2"><strong>💡 نصيحة:</strong> استخدم RAII مع الذكية (Smart Pointers) لتجنب تسرب الذاكرة [citation:4].</p>
+        `,
+      },
+      {
+        question: "ما هي Smart Pointers في C++ وما هي أنواعها؟",
+        answer: `
+          <p><strong>Smart Pointers</strong> هي كائنات تعمل كمؤشرات ولكنها تدير الذاكرة <strong>تلقائياً</strong> (تُحرر عند الخروج عن النطاق) [citation:5].</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>أنواعها:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong><code>unique_ptr</code>:</strong> ملكية <strong>حصرية</strong> (لا يمكن نسخه، فقط نقله). الخيار الافتراضي المفضل [citation:5].</li>
+                <li><strong><code>shared_ptr</code>:</strong> ملكية <strong>مشتركة</strong> مع عداد مراجع (Reference Count). استخدمه بحذر بسبب الحمل الزائد [citation:5].</li>
+                <li><strong><code>weak_ptr</code>:</strong> مرجع <strong>ضعيف</strong> لكائن <code>shared_ptr</code>، يُستخدم لكسر الحلقات (Cycles) [citation:5].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>#include &lt;memory&gt;
+
+// unique_ptr
+std::unique_ptr&lt;int&gt; ptr1 = std::make_unique&lt;int&gt;(10);
+// std::unique_ptr&lt;int&gt; ptr2 = ptr1; // ❌ خطأ: لا يمكن النسخ
+std::unique_ptr&lt;int&gt; ptr3 = std::move(ptr1); // ✅ نقل الملكية
+
+// shared_ptr
+std::shared_ptr&lt;int&gt; shared1 = std::make_shared&lt;int&gt;(20);
+std::shared_ptr&lt;int&gt; shared2 = shared1; // ✅ مشاركة الملكية
+
+// weak_ptr
+std::weak_ptr&lt;int&gt; weak = shared1; // مرجع ضعيف
+if (auto locked = weak.lock()) {
+    // استخدام الكائن إذا كان موجوداً
+}</code></pre>
+          </div>
+        `,
+      },
+      // ============================
+      // STL (متوسط)
+      // ============================
+      {
+        question: "ما هي STL في C++ وما هي مكوناتها الرئيسية؟",
+        answer: `
+          <p><strong>STL (Standard Template Library)</strong> هي مكتبة قوية من القوالب (Templates) توفر <strong>حاويات (Containers)</strong>، <strong>خوارزميات (Algorithms)</strong>، و <strong>مكررات (Iterators)</strong> للتعامل مع البيانات بكفاءة [citation:1].</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>المكونات الرئيسية:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>Containers (حاويات):</strong> لتخزين البيانات.</li>
+                <ul class="list-circle pr-6 space-y-1 mt-1">
+                  <li><strong>Sequence:</strong> <code>vector</code>, <code>list</code>, <code>deque</code>.</li>
+                  <li><strong>Associative (Ordered):</strong> <code>set</code>, <code>map</code> (شجرة حمراء-سوداء، O(log n)) [citation:5].</li>
+                  <li><strong>Unordered:</strong> <code>unordered_set</code>, <code>unordered_map</code> (جدول تجزئة، O(1) متوسط) [citation:5].</li>
+                </ul>
+                <li><strong>Algorithms (خوارزميات):</strong> دوال جاهزة لمعالجة الحاويات.</li>
+                <ul class="list-circle pr-6 space-y-1 mt-1">
+                  <li><strong>بحث:</strong> <code>find</code>, <code>binary_search</code>.</li>
+                  <li><strong>ترتيب:</strong> <code>sort</code>, <code>stable_sort</code>.</li>
+                  <li><strong>تحويل:</strong> <code>transform</code>, <code>copy</code>, <code>accumulate</code> [citation:1].</li>
+                </ul>
+                <li><strong>Iterators (مكررات):</strong> كائنات تصل بين الخوارزميات والحاويات، تشبه المؤشرات (مثل: <code>begin()</code>, <code>end()</code>) [citation:1].</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      {
+        question: "متى تستخدم vector بدلاً من list؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong><code>vector</code>:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>مصفوفة <strong>مستمرة</strong> في الذاكرة (ذاكرة تخزين مؤقت جيدة).</li>
+                <li><strong>O(1)</strong> للوصول العشوائي.</li>
+                <li><strong>O(1)</strong> (مطفأ) للإضافة في النهاية (<code>push_back</code>).</li>
+                <li><strong>O(n)</strong> للإضافة/الحذف في المنتصف.</li>
+                <li>استخدمه عندما تحتاج <strong>وصولاً عشوائياً</strong> متكرراً [citation:5].</li>
+              </ul>
+            </li>
+            <li>
+              <strong><code>list</code>:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>قائمة <strong>مزدوجة الربط</strong> (غير مستمرة في الذاكرة).</li>
+                <li><strong>O(n)</strong> للوصول العشوائي (لا يدعم <code>[]</code>).</li>
+                <li><strong>O(1)</strong> للإضافة/الحذف في أي مكان (مع مكرر).</li>
+                <li>استخدمه عندما تحتاج <strong>إضافة وحذف</strong> متكرراً في المنتصف [citation:5].</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      {
+        question: "ما هو الفرق بين <map> و <unordered_map>؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-3">
+            <li>
+              <strong><code>map</code> (Ordered):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>يعتمد على <strong>شجرة حمراء-سوداء (Red-Black Tree)</strong> [citation:5].</li>
+                <li>العناصر <strong>مرتبة</strong> حسب المفتاح (ترتيب تصاعدي).</li>
+                <li>العمليات: <strong>O(log n)</strong> (بحث، إضافة، حذف) [citation:5].</li>
+                <li>استخدمه عندما تحتاج إلى <strong>ترتيب</strong> العناصر.</li>
+              </ul>
+            </li>
+            <li>
+              <strong><code>unordered_map</code> (Unordered):</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>يعتمد على <strong>جدول تجزئة (Hash Table)</strong> [citation:5].</li>
+                <li>العناصر <strong>غير مرتبة</strong> (تعتمد على دالة التجزئة).</li>
+                <li>العمليات: <strong>O(1) في المتوسط</strong> (أسرع) [citation:5].</li>
+                <li>استخدمه عندما تحتاج إلى <strong>سرعة</strong> في البحث ولا يهمك الترتيب.</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      // ============================
+      // Templates (متوسط)
+      // ============================
+      {
+        question: "ما هي Templates في C++ وكيف تُستخدم؟",
+        answer: `
+          <p><strong>Templates (القوالب)</strong> هي ميزة في C++ تسمح بكتابة كود <strong>عام (Generic)</strong> يعمل مع أي نوع بيانات [citation:1].</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>أنواعها:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>Function Templates:</strong> لإنشاء دوال عامة.</li>
+                <li><strong>Class Templates:</strong> لإنشاء فئات عامة [citation:1].</li>
+                <li><strong>Template Specialization:</strong> تخصيص القالب لنوع معين [citation:1].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>// Function Template
+template &lt;typename T&gt;
+T max(T a, T b) {
+    return (a &gt; b) ? a : b;
+}
+
+// Class Template
+template &lt;typename T&gt;
+class Stack {
+private:
+    vector&lt;T&gt; elements;
+public:
+    void push(const T&amp; element) {
+        elements.push_back(element);
+    }
+    T pop() {
+        T top = elements.back();
+        elements.pop_back();
+        return top;
+    }
+};
+
+// Template Specialization
+template &lt;&gt;
+class DataProcessor&lt;int&gt; {
+public:
+    void process(int data) {
+        cout &lt;&lt; "Processing integer: " &lt;&lt; data &lt;&lt; endl;
+    }
+};</code></pre>
+          </div>
+        `,
+      },
+      // ============================
+      // Memory Management (متقدم)
+      // ============================
+      {
+        question: 'ما هو "Diamond Problem" في C++ وكيف يتم حله؟',
+        answer: `
+          <p><strong>Diamond Problem</strong> هي مشكلة تحدث في <strong>الوراثة المتعددة (Multiple Inheritance)</strong> عندما ترث فئة من فئتين تشتركان في فئة أساسية مشتركة، مما يؤدي إلى <strong>ازدواجية</strong> في الأعضاء الموروثة [citation:1].</p>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>class A {
+public:
+    int value;
+};
+
+class B : public A {};
+class C : public A {};
+
+class D : public B, public C {
+    // D لديه نسختان من 'value' (واحدة من B وأخرى من C)
+};
+
+D d;
+// d.value = 10; // ❌ غامض: أي 'value' نستخدم؟</code></pre>
+          </div>
+          <p class="mt-2"><strong>الحل:</strong> استخدام <strong>Virtual Inheritance</strong> [citation:1].</p>
+          <div class="mt-3 p-3 bg-green-50 dark:bg-green-900/20 border-r-4 border-green-500 rounded">
+            <pre class="text-sm overflow-x-auto"><code>class A {};
+class B : virtual public A {}; // وراثة افتراضية
+class C : virtual public A {};
+class D : public B, public C {
+    // D لديه نسخة واحدة فقط من A
+};
+D d;
+d.value = 10; // ✅ لا غموض الآن</code></pre>
+          </div>
+        `,
+      },
+      // ============================
+      // Exceptions (متقدم)
+      // ============================
+      {
+        question: "كيف تتعامل مع الاستثناءات (Exceptions) في C++؟",
+        answer: `
+          <p>في C++، يتم التعامل مع الأخطاء باستخدام <strong>كتل <code>try</code> و <code>catch</code></strong> و <strong>رمي الاستثناءات</strong> باستخدام <code>throw</code> [citation:6].</p>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>#include &lt;stdexcept&gt;
+
+double divide(double a, double b) {
+    if (b == 0) {
+        throw std::runtime_error("Division by zero!");
+    }
+    return a / b;
+}
+
+int main() {
+    try {
+        double result = divide(10, 0);
+        cout &lt;&lt; result &lt;&lt; endl;
+    } catch (const std::exception&amp; e) {
+        cerr &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; endl;
+    }
+    return 0;
+}</code></pre>
+          </div>
+          <p class="mt-2"><strong>💡 نصيحة:</strong> استخدم الاستثناءات بدلاً من أكواد الخطأ (Error Codes) لأنها أكثر تنظيماً [citation:6].</p>
+        `,
+      },
+      // ============================
+      // Move Semantics (متقدم)
+      // ============================
+      {
+        question: "ما هي Move Semantics في C++11 ولماذا هي مهمة؟",
+        answer: `
+          <p><strong>Move Semantics (دلالات النقل)</strong> هي ميزة في C++11 تسمح <strong>بنقل</strong> الموارد (مثل الذاكرة) من كائن إلى آخر بدلاً من نسخها، مما يحسن الأداء بشكل كبير [citation:4].</p>
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>متى تستخدمها؟</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li>عند التعامل مع كائنات <strong>ثقيلة</strong> (مثل السلاسل الطويلة، الحاويات الكبيرة).</li>
+                <li>لتجنب النسخ غير الضروري وتحسين الأداء [citation:5].</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>#include &lt;string&gt;
+#include &lt;utility&gt;
+
+std::string createString() {
+    return "Hello, World!"; // يستخدم Move تلقائياً (RVO)
+}
+
+int main() {
+    std::string s1 = "Hello";
+    std::string s2 = std::move(s1); // نقل الموارد من s1 إلى s2
+
+    // s1 الآن فارغ (لا يمكن استخدامه)
+    std::cout &lt;&lt; "s1: " &lt;&lt; s1 &lt;&lt; std::endl; // سيطبع سطراً فارغاً
+    std::cout &lt;&lt; "s2: " &lt;&lt; s2 &lt;&lt; std::endl; // يطبع "Hello"
+
+    return 0;
+}</code></pre>
+          </div>
+        `,
+      },
+      // ============================
+      // C++17/20 Features (متقدم)
+      // ============================
+      {
+        question: "ما هي أهم الإضافات في C++17 و C++20؟",
+        answer: `
+          <ul class="list-disc pr-6 space-y-2 mt-2">
+            <li>
+              <strong>C++17:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>Structured Bindings:</strong> <code>auto [x, y] = point;</code> [citation:6].</li>
+                <li><strong><code>if constexpr</code>:</strong> تنفيذ شرطي في وقت الترجمة.</li>
+                <li><strong>std::optional, std::variant, std::any:</strong> أنواع بيانات جديدة.</li>
+                <li><strong>Parallel Algorithms:</strong> خوارزميات متوازية في STL.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>C++20:</strong>
+              <ul class="list-circle pr-6 space-y-1 mt-1">
+                <li><strong>Concepts:</strong> قيود على القوالب (Templates) لتحسين القراءة والأخطاء [citation:6].</li>
+                <li><strong>Coroutines:</strong> دوال غير متزامنة قابلة للإيقاف والاستئناف [citation:9].</li>
+                <li><strong>Ranges:</strong> طريقة جديدة للتعامل مع الحاويات.</li>
+                <li><strong>std::span:</strong> عرض (View) على مصفوفة أو حاوية.</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+      },
+      // ============================
+      // أسئلة برمجية (Coding)
+      // ============================
+      {
+        question: "كيف تحذف التكرارات من مصفوفة في C++؟",
+        answer: `
+          <p>لحذف التكرارات من <code>vector</code>، استخدم <code>sort</code> مع <code>unique</code> و <code>erase</code>:</p>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+
+std::vector&lt;int&gt; arr = {1, 2, 2, 3, 3, 3, 4, 5, 5};
+
+// 1. ترتيب العناصر
+std::sort(arr.begin(), arr.end());
+
+// 2. إزالة التكرارات المتجاورة
+auto last = std::unique(arr.begin(), arr.end());
+
+// 3. حذف العناصر المكررة
+arr.erase(last, arr.end());
+
+// arr = {1, 2, 3, 4, 5}</code></pre>
+          </div>
+        `,
+      },
+      {
+        question: "كيف تنشئ Thread Pool في C++؟",
+        answer: `
+          <p><strong>Thread Pool</strong> هو مجموعة من الخيوط الجاهزة لتنفيذ المهام بشكل غير متزامن، مما يقلل من حمل إنشاء الخيوط في كل مرة [citation:9].</p>
+          <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
+            <pre class="text-sm overflow-x-auto"><code>#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;thread&gt;
+#include &lt;future&gt;
+#include &lt;functional&gt;
+
+class ThreadPool {
+public:
+    ThreadPool(size_t numThreads) {
+        for (size_t i = 0; i &lt; numThreads; ++i) {
+            workers.emplace_back([this] {
+                while (true) {
+                    std::function&lt;void()&gt; task;
+                    {
+                        std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+                        condition.wait(lock, [this] { return !tasks.empty() || stop; });
+                        if (stop &amp;&amp; tasks.empty()) return;
+                        task = std::move(tasks.front());
+                        tasks.pop();
+                    }
+                    task();
+                }
+            });
+        }
+    }
+
+    template&lt;typename F, typename... Args&gt;
+    auto enqueue(F&amp;&amp; f, Args&amp;&amp;... args) {
+        auto task = std::make_shared&lt;std::packaged_task&lt;void()&gt;&gt;(
+            std::bind(std::forward&lt;F&gt;(f), std::forward&lt;Args&gt;(args)...)
+        );
+        auto future = task-&gt;get_future();
+        {
+            std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+            tasks.emplace([task]() { (*task)(); });
+        }
+        condition.notify_one();
+        return future;
+    }
+
+    ~ThreadPool() {
+        {
+            std::unique_lock&lt;std::mutex&gt; lock(queueMutex);
+            stop = true;
+        }
+        condition.notify_all();
+        for (std::thread&amp; worker : workers) {
+            worker.join();
+        }
+    }
+
+private:
+    std::vector&lt;std::thread&gt; workers;
+    std::queue&lt;std::function&lt;void()&gt;&gt; tasks;
+    std::mutex queueMutex;
+    std::condition_variable condition;
+    bool stop = false;
+};</code></pre>
+          </div>
+        `,
+      },
+    ],
+  },
   backend: {
     title: "Backend Basics (Node.js, Express, REST APIs)",
     icon: "⚙️",

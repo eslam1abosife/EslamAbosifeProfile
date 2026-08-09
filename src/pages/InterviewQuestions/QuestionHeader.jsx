@@ -26,7 +26,7 @@ const QuestionHeader = () => {
         مجموعة شاملة من أهم الأسئلة الشائعة في المقابلات التقنية
       </p>
 
-      {/* الأزرار (Tags) - تحسين الدارك مود */}
+      {/* الأزرار (Tags) - مع إضافة C++ */}
       <div className="mt-6 flex flex-wrap justify-center gap-2.5">
         <button
           onClick={() => scrollToSection('section-javascript')}
@@ -69,6 +69,13 @@ const QuestionHeader = () => {
           className="px-4 py-1.5 bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium hover:bg-teal-200 dark:hover:bg-teal-800/60 transition-all duration-300 cursor-pointer border border-teal-200 dark:border-teal-800/50 hover:scale-105 hover:shadow-md"
         >
           Node.js
+        </button>
+        {/* ✅ زر C++ الجديد */}
+        <button
+          onClick={() => scrollToSection('section-cpp')}
+          className="px-4 py-1.5 bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-medium hover:bg-indigo-200 dark:hover:bg-indigo-800/60 transition-all duration-300 cursor-pointer border border-indigo-200 dark:border-indigo-800/50 hover:scale-105 hover:shadow-md"
+        >
+          C++
         </button>
       </div>
     </div>

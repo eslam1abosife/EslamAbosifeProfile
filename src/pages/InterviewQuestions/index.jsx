@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import QuestionHeader from './QuestionHeader';
-import QuestionSection from './QuestionSection';
-import QuestionFooter from './QuestionFooter';
-import { questionsData } from './questionsData';
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import QuestionHeader from "./QuestionHeader";
+import QuestionSection from "./QuestionSection";
+import QuestionFooter from "./QuestionFooter";
+import { questionsData } from "./questionsData";
 
 const InterviewQuestions = () => {
   useEffect(() => {
-    document.title = 'أسئلة المقابلات التقنية | Eslam Abosife';
+    document.title = "أسئلة المقابلات التقنية | Eslam Abosife";
   }, []);
 
   return (
@@ -20,7 +20,6 @@ const InterviewQuestions = () => {
     >
       <div className="max-w-5xl mx-auto">
         <QuestionHeader />
-
         {/* JavaScript */}
         <QuestionSection
           id="section-javascript"
@@ -29,7 +28,6 @@ const InterviewQuestions = () => {
           color={questionsData.javascript.color}
           questions={questionsData.javascript.questions}
         />
-
         {/* Vue.js */}
         <QuestionSection
           id="section-vue"
@@ -38,7 +36,6 @@ const InterviewQuestions = () => {
           color={questionsData.vue.color}
           questions={questionsData.vue.questions}
         />
-
         {/* Web Security */}
         <QuestionSection
           id="section-security"
@@ -47,7 +44,6 @@ const InterviewQuestions = () => {
           color={questionsData.security.color}
           questions={questionsData.security.questions}
         />
-
         {/* HTML & CSS */}
         <QuestionSection
           id="section-htmlcss"
@@ -56,7 +52,6 @@ const InterviewQuestions = () => {
           color={questionsData.htmlcss.color}
           questions={questionsData.htmlcss.questions}
         />
-
         {/* Git & GitHub */}
         <QuestionSection
           id="section-git"
@@ -65,7 +60,6 @@ const InterviewQuestions = () => {
           color={questionsData.git.color}
           questions={questionsData.git.questions}
         />
-
         {/* Command Line */}
         <QuestionSection
           id="section-commandline"
@@ -74,7 +68,6 @@ const InterviewQuestions = () => {
           color={questionsData.commandline.color}
           questions={questionsData.commandline.questions}
         />
-
         {/* Backend Basics */}
         <QuestionSection
           id="section-backend"
@@ -83,7 +76,14 @@ const InterviewQuestions = () => {
           color={questionsData.backend.color}
           questions={questionsData.backend.questions}
         />
-
+     
+        <QuestionSection
+          id="section-cpp" 
+          title={questionsData.cpp.title}
+          icon={questionsData.cpp.icon}
+          color={questionsData.cpp.color}
+          questions={questionsData.cpp.questions}
+        />
         <QuestionFooter />
       </div>
     </motion.div>
