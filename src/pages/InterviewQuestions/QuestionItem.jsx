@@ -24,15 +24,15 @@ const QuestionItem = ({ index, question, answer, category, isOpen, onToggle }) =
     >
       <button
         onClick={onToggle}
-        className="w-full text-right p-5 md:p-6 flex items-start justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-2xl transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/30"
+        className="w-full text-right p-5 md:p-6 flex items-center justify-between gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-2xl transition-colors hover:bg-gray-50 dark:hover:bg-gray-700/30"
         aria-expanded={isOpen}
       >
-        {/* ✅ هنا التعديل: الرقم والسؤال في سطر واحد */}
+        {/* ✅ الرقم والسؤال في سطر واحد */}
         <div className="flex items-center gap-3 flex-1 min-w-0">
           <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 font-bold text-sm flex-shrink-0">
             {index + 1}
           </span>
-          <span className="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-100 text-right break-words">
+          <span className="text-base md:text-lg font-semibold text-gray-800 dark:text-gray-100 text-right">
             {question}
           </span>
         </div>
