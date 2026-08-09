@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { FaBars, FaTimes, FaCode } from 'react-icons/fa'
+import { FaBars, FaTimes, FaCode, FaQuestionCircle } from 'react-icons/fa'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 import { useLanguage } from '../context/LanguageContext'
@@ -26,7 +26,8 @@ const Navbar = () => {
     { path: '/', label: t.nav.home },
     { path: '/projects', label: t.nav.projects },
     { path: '/about', label: t.nav.about },
-    { path: '/contact', label: t.nav.contact }
+    { path: '/contact', label: t.nav.contact },
+    { path: '/questions', label: t.nav.questions, icon: FaQuestionCircle }  // <-- أضف هذا السطر
   ]
 
   return (
@@ -52,25 +53,31 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
-          {links.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`relative px-3 py-1.5 rounded-lg text-sm transition-all ${
-                location.pathname === link.path 
-                  ? 'text-accent bg-accent/10' 
-                  : 'text-secondary hover:text-accent hover:bg-accent/5'
-              }`}
-            >
-              {link.label}
-              {location.pathname === link.path && (
-                <motion.div
-                  layoutId="underline"
-                  className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-accent rounded-full"
-                />
-              )}
-            </Link>
-          ))}
+          {links.map(link => {
+            const Icon = link.icon
+            const isActive = location.pathname === link.path
+            
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`relative px-3 py-1.5 rounded-lg text-sm transition-all flex items-center gap-1.5 ${
+                  isActive 
+                    ? 'text-accent bg-accent/10' 
+                    : 'text-secondary hover:text-accent hover:bg-accent/5'
+                }`}
+              >
+                {Icon && <Icon className="text-xs" />}
+                {link.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="underline"
+                    className="absolute -bottom-0.5 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-accent rounded-full"
+                  />
+                )}
+              </Link>
+            )
+          })}
           
           <div className="flex items-center gap-2 ml-2">
             <LanguageToggle />
@@ -101,20 +108,26 @@ const Navbar = () => {
             borderColor: 'var(--border-color)'
           }}
         >
-          {links.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setIsOpen(false)}
-              className={`px-3 py-2.5 rounded-lg transition-all text-center text-sm ${
-                location.pathname === link.path 
-                  ? 'text-accent bg-accent/10' 
-                  : 'text-secondary hover:text-accent hover:bg-accent/5'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map(link => {
+            const Icon = link.icon
+            const isActive = location.pathname === link.path
+            
+            return (
+              <Link
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsOpen(false)}
+                className={`px-3 py-2.5 rounded-lg transition-all text-center text-sm flex items-center justify-center gap-2 ${
+                  isActive 
+                    ? 'text-accent bg-accent/10' 
+                    : 'text-secondary hover:text-accent hover:bg-accent/5'
+                }`}
+              >
+                {Icon && <Icon className="text-sm" />}
+                {link.label}
+              </Link>
+            )
+          })}
         </motion.div>
       )}
     </motion.nav>

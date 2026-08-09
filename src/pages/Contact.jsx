@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { FaGithub, FaEnvelope, FaPhone, FaLinkedin } from 'react-icons/fa'
+import { FaGithub, FaEnvelope,  FaLinkedin } from 'react-icons/fa'
 import { MdEmail, MdPhone } from 'react-icons/md'
 import { useLanguage } from '../context/LanguageContext'
 import { translations } from '../data/translations'
@@ -55,7 +55,7 @@ const Contact = () => {
     {
       icon: <FaGithub className="text-2xl text-accent" />,
       label: 'GitHub',
-      value: 'github.com/eslamabosife',
+      value: 'github.com/eslam1abosife',
       link: 'https://github.com/eslam1abosife'
     },
     {

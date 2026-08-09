@@ -43,8 +43,14 @@
   body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -57,7 +63,9 @@
     flex-direction: column;
     border-inline: 1px solid var(--border-color);
     background: var(--bg-primary);
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
     position: relative;
     padding-top: 0;
   }
@@ -68,9 +76,11 @@
     @apply backdrop-blur-xl border;
     background: rgba(255, 255, 255, 0.05);
     border-color: var(--border-color);
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
   }
-  
+
   .dark .glass-effect {
     background: rgba(255, 255, 255, 0.03);
   }
@@ -84,7 +94,10 @@
   .card-custom {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
     box-shadow: 0 4px 20px var(--shadow-color);
   }
 
@@ -103,16 +116,67 @@
   }
 
   @keyframes shimmer {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 200% center; }
+    0%,
+    100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 200% center;
+    }
   }
 
   @keyframes spin-slow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .animate-spin-slow {
     animation: spin-slow 8s linear infinite;
   }
+}
+@import "tailwindcss";
+
+/* تحسين التنسيق العام */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* تحسين التمرير السلس */
+html {
+  scroll-behavior: smooth;
+}
+
+/* تحسين الدارك مود للنصوص */
+.dark .prose {
+  color: #e5e7eb;
+}
+
+.dark .prose strong {
+  color: #f3f4f6;
+}
+
+.dark .prose code {
+  color: #60a5fa;
+}
+
+/* تحسين ظهور الأرقام */
+.question-number {
+  font-feature-settings: "tnum";
+}
+
+/* تحسين الأزرار في الوضع المظلم */
+.dark .tag-button {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
