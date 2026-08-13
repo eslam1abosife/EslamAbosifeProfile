@@ -2775,13 +2775,17 @@ console.log(route.query.search)
       {
         question: "ما هي ثغرة CSRF وكيف نحمي منها؟",
         answer: `
-          <p><strong>CSRF:</strong> ثغرة يخدع فيها الهاكر المتصفح ليرسل طلبًا غير مصرح به.</p>
-          <p class="mt-2"><strong>الحماية:</strong></p>
-          <ul class="list-disc pr-6 space-y-1 mt-1">
-            <li><strong>CSRF Token:</strong> توكن فريد لكل جلسة/طلب.</li>
-            <li><strong>SameSite Cookies:</strong> Lax أو Strict.</li>
-          </ul>
-        `,
+    <p><strong>CSRF:</strong> هجوم بيخلي موقع خبيث يبعت طلب باسمك (زي تحويل فلوس) من غير ما تحس، لأنه بيستغل إن البراوزر بيبعت الكوكي أوتوماتيك.</p>
+    <p class="mt-2"><strong>الحماية:</strong></p>
+    <ul class="list-disc pr-6 space-y-1 mt-1">
+      <li><strong>CSRF Token:</strong> توكن سري بيتبعت مع كل طلب مهم.</li>
+      <li><strong>SameSite Cookies:</strong> Lax أو Strict.</li>
+      <li><strong>في Nuxt.js:</strong> 
+        <br>نزل الموديول: <code>npx nuxi module add csurf</code>
+        <br>وبعدين استخدم <code>useCsrfFetch()</code> بدل <code>useFetch</code>.
+      </li>
+    </ul>
+  `,
       },
       {
         question: "ما الفرق بين JWT و OAuth؟",
