@@ -65,10 +65,15 @@ const QuestionHeader = () => {
           Linux
         </button>
         <button
-          onClick={() => scrollToSection('section-backend')}
+          onClick={() => scrollToSection('section-Front_end')}
           className="px-4 py-1.5 bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium hover:bg-teal-200 dark:hover:bg-teal-800/60 transition-all duration-300 cursor-pointer border border-teal-200 dark:border-teal-800/50 hover:scale-105 hover:shadow-md"
         >
-          Node.js
+          Front-end
+        </button> <button
+          onClick={() => scrollToSection('section-Backend')}
+          className="px-4 py-1.5 bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300 rounded-full text-sm font-medium hover:bg-teal-200 dark:hover:bg-teal-800/60 transition-all duration-300 cursor-pointer border border-teal-200 dark:border-teal-800/50 hover:scale-105 hover:shadow-md"
+        >
+          Backend
         </button>
         {/* ✅ زر C++ الجديد */}
         <button

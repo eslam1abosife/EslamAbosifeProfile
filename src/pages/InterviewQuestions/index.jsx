@@ -68,15 +68,22 @@ const InterviewQuestions = () => {
           color={questionsData.commandline.color}
           questions={questionsData.commandline.questions}
         />
+        {/* Front-end Basics */}
+        <QuestionSection
+          id="section-Front_end"
+          title={questionsData.Front_end.title}
+          icon={questionsData.Front_end.icon}
+          color={questionsData.Front_end.color}
+          questions={questionsData.Front_end.questions}
+        />
         {/* Backend Basics */}
         <QuestionSection
-          id="section-backend"
-          title={questionsData.backend.title}
-          icon={questionsData.backend.icon}
-          color={questionsData.backend.color}
-          questions={questionsData.backend.questions}
+          id="section-Backend"
+          title={questionsData.Backend.title}
+          icon={questionsData.Backend.icon}
+          color={questionsData.Backend.color}
+          questions={questionsData.Backend.questions}
         />
-     
         <QuestionSection
           id="section-cpp" 
           title={questionsData.cpp.title}
