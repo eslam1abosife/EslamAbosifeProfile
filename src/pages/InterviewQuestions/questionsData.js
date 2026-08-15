@@ -2799,9 +2799,62 @@ console.log(route.query.search)
       },
       {
         question: "ما الفرق بين CORS و CSP؟",
-        answer: {
-          html: "<div class='space-y-3 text-base leading-relaxed'><p class='font-medium'>بص يا فندم، الاتنين دول بيجوا في الهيدر بتاع الـ HTTP، لكن كل واحد ليه وظيفة مختلفة خالص:</p><ul class='list-disc pr-6 space-y-2'><li><strong>CORS:</strong> دي بتاعة 'مين مسموح له يكلمني؟' يعني أنا عندي API على السيرفر، والمتصفح بيمنع أي موقع تاني إنه يطلب مني عشان أمان. فـ CORS هي إني أقول للسيرفر: 'سيب الموقع الفلاني بس هو اللي يطلب مني، ولو أي موقع تاني حاول، ارفضه واديله خطأ'. دي بتتحكم في الطلبات اللي جاية من برة.</li><li><strong>CSP:</strong> دي بتاعة 'إيه المسموح يتنفذ جوايا؟' يعني لو في هاكر حاول يحقن سكربت خبيث في صفحتي (XSS)، CSP بتقول للمتصفح: 'متسمحش لأي سكربت يشتغل إلا لو جاي من عنوان معين أنا واثق منه، ومانع أي حاجة مش موثوقة'. دي بتتحكم في المحتوى اللي بيتنفذ جوه الموقع.</li></ul></div>",
-        },
+        answer: `
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <!-- المقدمة -->
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">بص يا فندم،</span> الاتنين دول بيجوا في الهيدر بتاع الـ HTTP، لكن كل واحد ليه وظيفة مختلفة خالص:
+        </p>
+      </div>
+
+      <!-- CORS -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">🌐 CORS (Cross-Origin Resource Sharing):</h4>
+        <p class="mb-1 font-semibold text-gray-700 dark:text-gray-300">دي بتاعة <span class="text-blue-600 dark:text-blue-400">"مين مسموح له يكلمني؟"</span></p>
+        <ul class="list-disc pr-6 space-y-1">
+          <li>
+            يعني أنا عندي API على السيرفر، والمتصفح بيمنع أي موقع تاني إنه يطلب مني عشان أمان.
+          </li>
+          <li>
+            فـ CORS هي إني أقول للسيرفر: <span class="italic">"سيب الموقع الفلاني بس هو اللي يطلب مني، ولو أي موقع تاني حاول، ارفضه واديله خطأ"</span>.
+          </li>
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">🎯 وظيفتها:</span> بتتحكم في <strong>الطلبات اللي جاية من برة</strong> (من domains تانية).
+          </li>
+        </ul>
+      </div>
+
+      <!-- CSP -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-red-500 dark:border-red-400">
+        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2">🛡️ CSP (Content Security Policy):</h4>
+        <p class="mb-1 font-semibold text-gray-700 dark:text-gray-300">دي بتاعة <span class="text-red-600 dark:text-red-400">"إيه المسموح يتنفذ جوايا؟"</span></p>
+        <ul class="list-disc pr-6 space-y-1">
+          <li>
+            يعني لو في هاكر حاول يحقن سكربت خبيث في صفحتي (XSS)، CSP بتقول للمتصفح:
+          </li>
+          <li>
+            <span class="italic">"متسمحش لأي سكربت يشتغل إلا لو جاي من عنوان معين أنا واثق منه، ومانع أي حاجة مش موثوقة"</span>.
+          </li>
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">🎯 وظيفتها:</span> بتتحكم في <strong>المحتوى اللي بيتنفذ جوه الموقع</strong> (Scripts، Styles، Images).
+          </li>
+        </ul>
+      </div>
+
+      <!-- الخاتمة السريعة -->
+      <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">الخلاصة:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            CORS = <strong>"مين اللي له حق يطلب مني؟"</strong> (منظومة أذونات الطلبات من برة) 
+            <br>
+            CSP = <strong>"إيه اللي له حق يتنفذ عندي؟"</strong> (منظومة أمان المحتوى جوة)
+          </span>
+        </p>
+      </div>
+    </div>
+  `,
       },
       {
         question: "ما هي تنقية المدخلات (Input Sanitization)؟",
