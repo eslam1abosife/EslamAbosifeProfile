@@ -2788,7 +2788,7 @@ console.log(route.query.search)
   `,
       },
       {
-        question: "ما الفرق بين JWT و OAuth؟",
+        question: "   ما الفرق بين JWT و OAuth؟",
         answer: `
           <ul class="list-disc pr-6 space-y-2">
             <li><strong>JWT (JSON Web Token):</strong> شكل التوكن نفسه، عديم الحالة (Stateless).</li>
