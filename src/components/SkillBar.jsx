@@ -17,7 +17,7 @@ const SkillBar = ({ skill, delay, isRTL }) => {
           initial={{ width: 0 }}
           animate={{ width: `${skill.level}%` }}
           transition={{ duration: 1, delay: delay + 0.3 }}
-          className="h-full bg-gradient-to-r from-accent to-purple-500 rounded-full"
+          className="h-full   bg-gradient-to-r from-accent to-purple-500 rounded-full"
         />
       </div>
     </motion.div>

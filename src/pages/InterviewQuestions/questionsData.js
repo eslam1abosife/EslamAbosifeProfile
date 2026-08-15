@@ -2788,7 +2788,7 @@ console.log(route.query.search)
   `,
       },
       {
-        question: "   ما الفرق بين JWT و OAuth؟",
+        question: "ما الفرق بين JWT و OAuth؟",
         answer: `
           <ul class="list-disc pr-6 space-y-2">
             <li><strong>JWT (JSON Web Token):</strong> شكل التوكن نفسه، عديم الحالة (Stateless).</li>
@@ -3329,11 +3329,11 @@ console.log(route.query.search)
       {
         question: "ما الفرق بين git merge و git rebase؟",
         answer: `
-          <ul class="list-disc pr-6 space-y-2">
-            <li><strong>git merge:</strong> يدمج فرعين معًا ويحتفظ بتاريخ الفروع (يُنشئ commit دمج).</li>
-            <li><strong>git rebase:</strong> يعيد تطبيق commits من فرع على رأس فرع آخر (يحافظ على تاريخ خطي نظيف).</li>
+                   <ul class="list-disc pr-6 space-y-2">
+            <li><strong>git merge:</strong> بيدمج فرعين عن طريق إنشاء Merge Commit جديد، وبيخلي التاريخ متفرع (Non-linear).</li>
+            <li><strong>git rebase:</strong> بيعيد تطبيق الكوميتات بتاعة فرعك فوق آخر كوميت في الفرع التاني، فبيخلي التاريخ خطي (Linear) ونضيف، لكنه بيعيد كتابة الـ History.</li>
           </ul>
-          <p class="mt-2">Rebase ينتج تاريخًا أنظف، لكن لا تُعدل commits مشتركة مع فريق.</p>
+          <p class="mt-2">Rebase بيديك تاريخ أنظف، لكن متستخدمش rebase على كوميتات شارك فيها فريق تاني عشان متكسرش الشغل.</p>
         `,
       },
     ],
