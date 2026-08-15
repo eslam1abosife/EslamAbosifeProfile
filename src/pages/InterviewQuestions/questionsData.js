@@ -4218,30 +4218,35 @@ private:
       {
         question: "إيه الفرق بين localStorage و sessionStorage و cookies؟",
         answer: `
-    <div class="space-y-4">
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
       <!-- الفروق الأساسية -->
       <div>
-        <h4 class="font-bold text-blue-600 mb-2">📦 الفروق الأساسية:</h4>
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">📦 الفروق الأساسية:</h4>
         <ul class="list-disc pr-6 space-y-2">
           <li>
-            <strong>localStorage:</strong> تخزين دائم (ما بيتمسحش إلا يدوياً)، سعة كبيرة (5-10 ميجا)، <span class="text-red-600 font-semibold">مش بيتبعت</span> للسيرفر.
+            <strong>localStorage:</strong> تخزين دائم (ما بيتمسحش إلا يدوياً)، سعة كبيرة (5-10 ميجا)، 
+            <span class="text-red-600 dark:text-red-400 font-semibold">مش بيتبعت</span> للسيرفر.
           </li>
           <li>
-            <strong>sessionStorage:</strong> تخزين مؤقت (بيتمسح لما التاب يتقفل)، سعة كبيرة، <span class="text-red-600 font-semibold">مش بيتبعت</span> للسيرفر.
+            <strong>sessionStorage:</strong> تخزين مؤقت (بيتمسح لما التاب يتقفل)، سعة كبيرة، 
+            <span class="text-red-600 dark:text-red-400 font-semibold">مش بيتبعت</span> للسيرفر.
           </li>
           <li>
-            <strong>cookies:</strong> سعة صغيرة جداً (4 كيلوبايت)، <span class="text-green-600 font-semibold">بيتبعت تلقائياً</span> مع كل Request، وليه تاريخ انتهاء محدد.
+            <strong>cookies:</strong> سعة صغيرة جداً (4 كيلوبايت)، 
+            <span class="text-green-600 dark:text-green-400 font-semibold">بيتبعت تلقائياً</span> مع كل Request، وليه تاريخ انتهاء محدد.
           </li>
         </ul>
       </div>
 
       <!-- الرد العملي المحترف -->
-      <div class="mt-4 p-4 bg-gray-50 rounded-lg border-r-4 border-blue-500">
-        <h4 class="font-bold text-blue-600 mb-2">⚡ لكن في التطبيق العملي:</h4>
+      <div class="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">⚡ لكن في التطبيق العملي:</h4>
         <ul class="list-disc pr-6 space-y-2">
           <li>
-            <strong>أنا بمنع استخدام localStorage خالص في تخزين الـ Tokens (زي JWT) في المشاريع الكبيرة،</strong> وبستبدله بـ <strong>Cookies</strong> مع 
-            <code class="bg-gray-200 px-1 rounded">SameSite=Strict</code> و <code class="bg-gray-200 px-1 rounded">HttpOnly</code> 
+            <strong>أنا بمنع استخدام localStorage خالص في تخزين الـ Tokens (زي JWT) في المشاريع الكبيرة،</strong> 
+            وبستبدله بـ <strong>Cookies</strong> مع 
+            <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200">SameSite=Strict</code> 
+            و <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded text-gray-800 dark:text-gray-200">HttpOnly</code> 
             عشان أحمي المستخدم من هجمات <strong>CSRF</strong> و <strong>XSS</strong>.
           </li>
           <li class="mt-2">
@@ -4259,10 +4264,10 @@ private:
       </div>
 
       <!-- الخاتمة -->
-      <div class="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
-        <p class="font-semibold text-gray-800">
-          💡 <span class="text-blue-600">باختصار،</span> كل أداة ليها استخدامها حسب طبيعة البيانات:
-          <span class="block mt-1 text-sm text-gray-600">
+      <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">باختصار،</span> كل أداة ليها استخدامها حسب طبيعة البيانات:
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
             (حساسة ولا لأ؟ محتاجة سيرفر ولا لأ؟ ومحتاجاها تفضل قد إيه؟)
           </span>
         </p>
