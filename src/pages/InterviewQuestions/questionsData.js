@@ -2799,12 +2799,9 @@ console.log(route.query.search)
       },
       {
         question: "ما الفرق بين CORS و CSP؟",
-        answer: `
-          <ul class="list-disc pr-6 space-y-2">
-            <li><strong>CORS (Cross-Origin Resource Sharing):</strong> إعدادات من الباك إند تحدد من المسموح له طلب البيانات.</li>
-            <li><strong>CSP (Content Security Policy):</strong> إعدادات في الـ HTML تمنع تنفيذ سكربتات من مصادر غير موثوقة (للحماية من XSS).</li>
-          </ul>
-        `,
+        answer: {
+          html: "<div class='space-y-3 text-base leading-relaxed'><p class='font-medium'>بص يا فندم، الاتنين دول بيجوا في الهيدر بتاع الـ HTTP، لكن كل واحد ليه وظيفة مختلفة خالص:</p><ul class='list-disc pr-6 space-y-2'><li><strong>CORS:</strong> دي بتاعة 'مين مسموح له يكلمني؟' يعني أنا عندي API على السيرفر، والمتصفح بيمنع أي موقع تاني إنه يطلب مني عشان أمان. فـ CORS هي إني أقول للسيرفر: 'سيب الموقع الفلاني بس هو اللي يطلب مني، ولو أي موقع تاني حاول، ارفضه واديله خطأ'. دي بتتحكم في الطلبات اللي جاية من برة.</li><li><strong>CSP:</strong> دي بتاعة 'إيه المسموح يتنفذ جوايا؟' يعني لو في هاكر حاول يحقن سكربت خبيث في صفحتي (XSS)، CSP بتقول للمتصفح: 'متسمحش لأي سكربت يشتغل إلا لو جاي من عنوان معين أنا واثق منه، ومانع أي حاجة مش موثوقة'. دي بتتحكم في المحتوى اللي بيتنفذ جوه الموقع.</li></ul></div>",
+        },
       },
       {
         question: "ما هي تنقية المدخلات (Input Sanitization)؟",
