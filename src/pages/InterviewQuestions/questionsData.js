@@ -4218,17 +4218,56 @@ private:
       {
         question: "إيه الفرق بين localStorage و sessionStorage و cookies؟",
         answer: `
-    <ul class="list-disc pr-6 space-y-3">
-      <li>
-        <strong>localStorage:</strong> تخزين دائم، سعة كبيرة، مش بيتبعت للسيرفر.
-      </li>
-      <li>
-        <strong>sessionStorage:</strong> تخزين مؤقت لحد ما التاب يتقفل.
-      </li>
-      <li>
-        <strong>cookies:</strong> سعة صغيرة، بيتبعت مع كل Request، ليه تاريخ انتهاء.
-      </li>
-    </ul>
+    <div class="space-y-4">
+      <!-- الفروق الأساسية -->
+      <div>
+        <h4 class="font-bold text-blue-600 mb-2">📦 الفروق الأساسية:</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <strong>localStorage:</strong> تخزين دائم (ما بيتمسحش إلا يدوياً)، سعة كبيرة (5-10 ميجا)، <span class="text-red-600 font-semibold">مش بيتبعت</span> للسيرفر.
+          </li>
+          <li>
+            <strong>sessionStorage:</strong> تخزين مؤقت (بيتمسح لما التاب يتقفل)، سعة كبيرة، <span class="text-red-600 font-semibold">مش بيتبعت</span> للسيرفر.
+          </li>
+          <li>
+            <strong>cookies:</strong> سعة صغيرة جداً (4 كيلوبايت)، <span class="text-green-600 font-semibold">بيتبعت تلقائياً</span> مع كل Request، وليه تاريخ انتهاء محدد.
+          </li>
+        </ul>
+      </div>
+
+      <!-- الرد العملي المحترف -->
+      <div class="mt-4 p-4 bg-gray-50 rounded-lg border-r-4 border-blue-500">
+        <h4 class="font-bold text-blue-600 mb-2">⚡ لكن في التطبيق العملي:</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <strong>أنا بمنع استخدام localStorage خالص في تخزين الـ Tokens (زي JWT) في المشاريع الكبيرة،</strong> وبستبدله بـ <strong>Cookies</strong> مع 
+            <code class="bg-gray-200 px-1 rounded">SameSite=Strict</code> و <code class="bg-gray-200 px-1 rounded">HttpOnly</code> 
+            عشان أحمي المستخدم من هجمات <strong>CSRF</strong> و <strong>XSS</strong>.
+          </li>
+          <li class="mt-2">
+            أما بالنسبة للبيانات غير الحساسة:
+            <ul class="list-disc pr-6 mt-1 space-y-1">
+              <li>
+                <strong>localStorage:</strong> استخدامه لتخزين <strong>Cache البيانات الضخمة</strong> (زي قائمة المنتجات كلها) عشان أقلل الـ API Requests.
+              </li>
+              <li>
+                <strong>sessionStorage:</strong> استخدامه لحل مشكلة <strong>رفريش الصفحة</strong>، زي لما المستخدم بيملأ فورم طويل، بحفظ البيانات فيه عشان لو عمل ريفريش متضيعش.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- الخاتمة -->
+      <div class="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+        <p class="font-semibold text-gray-800">
+          💡 <span class="text-blue-600">باختصار،</span> كل أداة ليها استخدامها حسب طبيعة البيانات:
+          <span class="block mt-1 text-sm text-gray-600">
+            (حساسة ولا لأ؟ محتاجة سيرفر ولا لأ؟ ومحتاجاها تفضل قد إيه؟)
+          </span>
+        </p>
+      </div>
+    </div>
   `,
       },
       {
