@@ -1610,9 +1610,9 @@ fullName2.value = 'Ali Hassan'
         <p class="mt-2 text-sm text-gray-500">⚠️ متستخدمش computed لعمليات غير متزامنة زي طلبات API، استخدم watch أو دوال عادية.</p>
       `,
       },
-     {
-  question: "ما الفرق بين computed و methods في Vue؟",
-  answer: `
+      {
+        question: "ما الفرق بين computed و methods في Vue؟",
+        answer: `
     <div class="space-y-4 text-gray-800 dark:text-gray-200">
       <!-- التعريف الأساسي -->
       <div>
@@ -1727,7 +1727,7 @@ methods: {
       </div>
     </div>
   `,
-},
+      },
       {
         question: "ما هو watch في Vue؟",
         answer: `
@@ -3029,15 +3029,133 @@ console.log(route.query.search)
       {
         question: "ما هي المصادقة الآمنة (Secure Authentication)؟",
         answer: `
-          <p>المصادقة الآمنة مجموعة من الممارسات:</p>
-          <ul class="list-disc pr-6 space-y-1 mt-2">
-            <li>تخزين كلمات المرور مشفّرة (Hashed).</li>
-            <li>JWT مع Refresh Token في HttpOnly Cookie.</li>
-            <li>SameSite Cookies.</li>
-            <li>التحقق بخطوتين (MFA).</li>
-            <li>مبدأ الحد الأدنى من الصلاحيات (Least Privilege).</li>
-          </ul>
-        `,
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <!-- التعريف الأساسي -->
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">المصادقة الآمنة (Secure Authentication)</span> هي عملية 
+          <span class="text-blue-600 dark:text-blue-400 font-semibold">التحقق من هوية المستخدم</span> 
+          قبل منحه صلاحية الوصول للنظام أو البيانات، مع تطبيق 
+          <span class="text-green-600 dark:text-green-400 font-semibold">إجراءات أمنية</span> 
+          تمنع الاختراق والانتحال.
+        </p>
+      </div>
+
+      <!-- المبادئ الأساسية -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">🔐 المبادئ الأساسية للمصادقة الآمنة:</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">1. التشفير (Encryption):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>تخزين كلمات المرور باستخدام <strong>خوارزميات Hashing</strong> قوية (زي <code>bcrypt</code> أو <code>Argon2</code>) مع <strong>Salt</strong> عشان منع هجمات Rainbow Tables.</li>
+              <li>استخدام <strong>HTTPS</strong> إجباري عشان تشفير البيانات أثناء النقل (TLS).</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">2. إدارة الجلسات (Session Management):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>استخدام <strong>Tokens</strong> آمنة (زي JWT) مع وقت انتهاء صلاحية قصير (Short Expiry).</li>
+              <li>تخزين التوكنات في <strong>Cookies</strong> مع <code>HttpOnly</code> و <code>Secure</code> و <code>SameSite=Strict</code> عشان منع الـ XSS والـ CSRF.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">3. المصادقة متعددة العوامل (MFA):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>إضافة طبقة أمان إضافية (زي OTP، Google Authenticator، أو بصمة الإصبع).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- الهجمات الشائعة والحماية -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-red-500 dark:border-red-400">
+        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2">🛡️ الهجمات الشائعة وكيفية الحماية منها:</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <span class="font-semibold text-red-400">💀 Brute Force (هجوم القوة العمياء):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>الحل:</strong> تطبيق <strong>Rate Limiting</strong> (تحديد عدد المحاولات)، وإضافة <strong>CAPTCHA</strong>، وتأخير الردود بعد محاولات فاشلة.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">💀 SQL Injection:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>الحل:</strong> استخدام <strong>Prepared Statements</strong> أو <strong>ORM</strong> (زي Sequelize أو TypeORM).</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">💀 XSS (Cross-Site Scripting):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>الحل:</strong> تطبيق <strong>CSP (Content Security Policy)</strong>، وتنقية المدخلات (Sanitization)، وعدم تخزين التوكنات في <code>localStorage</code>.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">💀 CSRF (Cross-Site Request Forgery):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>الحل:</strong> استخدام <strong>CSRF Tokens</strong>، أو Cookies مع <code>SameSite=Strict</code>، أو الـ <strong>Double Submit Cookie</strong>.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">💀 Session Hijacking (اختطاف الجلسة):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>الحل:</strong> تجديد التوكنات بانتظام (Refresh Tokens)، واستخدام <strong>Device Fingerprinting</strong>، وإجبار المستخدم على إعادة المصادقة للعمليات الحساسة.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- التطبيق العملي (Best Practices) -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-purple-500 dark:border-purple-400">
+        <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-2">🚀 أفضل الممارسات في التطبيق العملي:</h4>
+        <ul class="list-disc pr-6 space-y-2 text-sm">
+          <li>
+            <span class="font-semibold">✅ استخدام OAuth2 / OpenID Connect:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>تفويض المصادقة لجهات موثوقة (زي Google، Facebook) لتقليل مسؤولية تخزين كلمات المرور.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold">✅ تخزين التوكنات بشكل آمن:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li><span class="text-red-600 dark:text-red-400">❌</span> ممنوع تخزين الـ JWT في <code>localStorage</code> (عرضة للـ XSS).</li>
+              <li><span class="text-green-600 dark:text-green-400">✅</span> استخدم Cookies مع <code>HttpOnly</code> و <code>Secure</code> و <code>SameSite=Strict</code>.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold">✅ سياسة كلمات المرور القوية:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>تطبيق شروط (طول، أحرف كبيرة وصغيرة، أرقام، رموز)، ومنع الكلمات الشائعة.</li>
+              <li>استخدام <strong>HaveIBeenPwned API</strong> للتحقق من كلمات المرور المخترقة.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold">✅ التسجيل والمراقبة (Logging & Monitoring):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>تسجيل محاولات الدخول الفاشلة والناجحة، وإعداد تنبيهات للأنشطة المشبوهة.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold">✅ مبدأ أقل الصلاحيات (Principle of Least Privilege):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>إعطاء المستخدم صلاحيات محدودة حسب احتياجه فقط، مع تفعيل <strong>RBAC</strong> (Role-Based Access Control).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- الخاتمة -->
+      <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">الخلاصة:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            المصادقة الآمنة مش مجرد تسجيل دخول، دي <strong>منظومة متكاملة</strong> من التشفير، وإدارة الجلسات، والحماية من الهجمات، والمراقبة المستمرة عشان نضمن أن 
+            <span class="font-semibold">المستخدم الصح هو اللي بيدخل</span> و <span class="font-semibold">البيانات في أمان</span> 🔒
+          </span>
+        </p>
+      </div>
+    </div>
+  `,
       },
     ],
   },
