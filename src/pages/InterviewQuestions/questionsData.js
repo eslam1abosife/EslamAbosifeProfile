@@ -203,31 +203,117 @@ console.log(counter()) // 3</code></pre>
     `,
       },
       {
-        question: "ما هي الـ Promises وكيف تعمل؟",
-        answer: `
-      <p>الـ Promise كائن بيمثل نتيجة عملية غير متزامنة (زي طلب API أو قراءة ملف).</p>
-      <p class="mt-2">ليه 3 حالات:</p>
-      <ul class="list-disc pr-6 space-y-1 mt-1">
-        <li>pending ← لسه مستنية.</li>
-        <li>fulfilled ← تمت بنجاح.</li>
-        <li>rejected ← فشلت.</li>
-      </ul>
-      <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
-        <pre class="text-sm overflow-x-auto"><code>const myPromise = new Promise((resolve, reject) => {
-  const success = true
-  if (success) {
-    resolve('تمت العملية بنجاح')
-  } else {
-    reject('حدث خطأ')
-  }
-})
-
-myPromise
-  .then(result => console.log(result))
-  .catch(error => console.error(error))</code></pre>
+  question: "ما هي الـ Promises وكيف تعمل؟",
+  answer: `
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <!-- التعريف الأساسي -->
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">الـ Promise</span> هي كائن (Object) في JavaScript 
+          بيمثل <span class="text-blue-600 dark:text-blue-400 font-semibold">عملية غير متزامنة</span> 
+          (زي طلب API، قراءة ملف، أو تأخير زمني)، وبتكون نتيجتها إما <span class="text-green-600 dark:text-green-400">نجاح</span> أو <span class="text-red-600 dark:text-red-400">فشل</span>.
+        </p>
       </div>
-    `,
-      },
+
+      <!-- حالات الـ Promise -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">🔴🔵🟢 حالات الـ Promise (3 حالات):</h4>
+        <ul class="list-disc pr-6 space-y-1">
+          <li>
+            <span class="font-semibold text-gray-500 dark:text-gray-400">1. Pending (معلقة):</span> 
+            الحالة الأولية، العملية لسه مخلصتش (زي ما تكون مستني رد الـ API).
+          </li>
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">2. Fulfilled (متحققة):</span> 
+            العملية خلصت بنجاح، وبتقدر تجيب النتيجة باستخدام <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">.then()</code>.
+          </li>
+          <li>
+            <span class="font-semibold text-red-600 dark:text-red-400">3. Rejected (مرفوضة):</span> 
+            العملية فشلت (زي انقطاع النت أو خطأ في السيرفر)، وبتقدر تتعامل مع الخطأ باستخدام <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">.catch()</code>.
+          </li>
+        </ul>
+      </div>
+
+      <!-- طريقة العمل -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-green-500 dark:border-green-400">
+        <h4 class="font-bold text-green-600 dark:text-green-400 mb-2">⚙️ إزاي بتشتغل؟</h4>
+        <p class="mb-2">الـ Promise بتاخد <strong>Executor Function</strong> (وظيفة بتنفذ فوراً)، والوظيفة دي بتاخد معاملين:</p>
+        <ul class="list-disc pr-6 space-y-1">
+          <li>
+            <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">resolve</code>: بتناديها لما العملية تنجح، وبتبعت معاها النتيجة.
+          </li>
+          <li>
+            <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">reject</code>: بتناديها لما العملية تفشل، وبتبعت معاها سبب الخطأ.
+          </li>
+        </ul>
+        <div class="mt-3 p-3 bg-gray-800 dark:bg-gray-900 rounded-lg">
+          <pre class="text-green-400 text-sm overflow-x-auto"><code>const myPromise = new Promise((resolve, reject) => {
+  // عملية غير متزامنة
+  if (success) {
+    resolve("تمت بنجاح ✅");
+  } else {
+    reject("حدث خطأ ❌");
+  }
+});</code></pre>
+        </div>
+      </div>
+
+      <!-- التعامل معها -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-purple-500 dark:border-purple-400">
+        <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-2">🔄 إزاي تتعامل معاها؟</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <strong><code>.then()</code>:</strong> بتتشغل لما الـ Promise تتحقق (Fulfilled)، وبترجع النتيجة.
+          </li>
+          <li>
+            <strong><code>.catch()</code>:</strong> بتتشغل لما الـ Promise ترفض (Rejected)، وبترجع سبب الخطأ.
+          </li>
+          <li>
+            <strong><code>.finally()</code>:</strong> بتتشغل في الحالتين (نجاح أو فشل)، زي ما تعمل حاجة بتنظيف (زي إخفاء Loader).
+          </li>
+        </ul>
+        <div class="mt-3 p-3 bg-gray-800 dark:bg-gray-900 rounded-lg">
+          <pre class="text-yellow-300 text-sm overflow-x-auto"><code>myPromise
+  .then(result => console.log(result)) // "تمت بنجاح ✅"
+  .catch(error => console.error(error)) // "حدث خطأ ❌"
+  .finally(() => console.log("خلصنا 🎯"));</code></pre>
+        </div>
+      </div>
+
+      <!-- في التطبيق العملي -->
+      <div class="mt-3 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-1">🚀 في التطبيق العملي:</h4>
+        <ul class="list-disc pr-6 space-y-1 text-sm text-gray-700 dark:text-gray-300">
+          <li>
+            بنستخدم الـ Promises بدل الـ Callbacks عشان نهرب من <strong>"Callback Hell"</strong> (الكود اللي بيبقى متراكب جوا بعضه).
+          </li>
+          <li>
+            الـ <code>fetch()</code> في JavaScript بيرجع Promise، وبنقدر نستخدم <code>async/await</code> عشان نخلي الكود أسهل في القراءة.
+          </li>
+          <li>
+            بنقدر ننفذ أكتر من Promise بنفس الوقت باستخدام:
+            <ul class="list-disc pr-6 mt-1">
+              <li><code>Promise.all()</code>: ينتظر كل الـ Promises تنجح.</li>
+              <li><code>Promise.race()</code>: ياخد أول Promise تخلص (أياً كانت نتيجتها).</li>
+              <li><code>Promise.allSettled()</code>: ينتظر كل الـ Promises تخلص (حتى لو فشلت).</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- الخاتمة -->
+      <div class="mt-2 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">باختصار:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            الـ Promise هي <strong>"وعد"</strong> بأن العملية غير المتزامنة هتخلص إما بنجاح أو فشل، 
+            وبتوفرلك طرق أنيقة للتعامل مع النتيجة والخطأ من غير ما تكدس الكود.
+          </span>
+        </p>
+      </div>
+    </div>
+  `,
+},
       {
         question: "ما الفرق بين async/await و Promises العادية؟",
         answer: `
