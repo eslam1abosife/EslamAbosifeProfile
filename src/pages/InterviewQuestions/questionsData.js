@@ -203,8 +203,8 @@ console.log(counter()) // 3</code></pre>
     `,
       },
       {
-  question: "ما هي الـ Promises وكيف تعمل؟",
-  answer: `
+        question: "ما هي الـ Promises وكيف تعمل؟",
+        answer: `
     <div class="space-y-4 text-gray-800 dark:text-gray-200">
       <!-- التعريف الأساسي -->
       <div>
@@ -313,7 +313,7 @@ console.log(counter()) // 3</code></pre>
       </div>
     </div>
   `,
-},
+      },
       {
         question: "ما الفرق بين async/await و Promises العادية؟",
         answer: `
@@ -1610,55 +1610,124 @@ fullName2.value = 'Ali Hassan'
         <p class="mt-2 text-sm text-gray-500">⚠️ متستخدمش computed لعمليات غير متزامنة زي طلبات API، استخدم watch أو دوال عادية.</p>
       `,
       },
-      {
-        question: "ما الفرق بين computed و methods في Vue؟",
-        answer: `
-    <p>الفرق بينهم مهم:</p>
-    <ul class="list-disc pr-6 space-y-3">
-      <li>
-        <strong>computed:</strong>
-        <ul class="list-circle pr-6 space-y-1 mt-1">
-          <li>بتتحسب لوحدها لما التبعيات تتغير.</li>
-          <li>بتعمل تخزين مؤقت (Caching)، يعني مش بتحسب كل مرة.</li>
-          <li>بتستخدمها للقيم المشتقة.</li>
-          <li>مش بتاخد parameters.</li>
+     {
+  question: "ما الفرق بين computed و methods في Vue؟",
+  answer: `
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <!-- التعريف الأساسي -->
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">الـ computed</span> و <span class="font-semibold">الـ methods</span> 
+          الاتنين بيعرفوا دوال في Vue، لكن الفرق الجوهري في 
+          <span class="text-blue-600 dark:text-blue-400 font-semibold">آلية التنفيذ</span> 
+          و <span class="text-blue-600 dark:text-blue-400 font-semibold">التخزين المؤقت (Caching)</span>.
+        </p>
+      </div>
+
+      <!-- الفروق الأساسية -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">⚡ الفروق الأساسية:</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <strong class="text-green-600 dark:text-green-400">computed (محسوبة):</strong>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm">
+              <li>بتتنفذ <span class="font-semibold text-green-400">مرة واحدة</span> وبتتخزن (Cached) لحد ما الـ dependencies (البيانات اللي بتعتمد عليها) تتغير.</li>
+              <li>لازم تكون <span class="font-semibold">Synchronous</span> (متزامنة) ومترجعش Promise.</li>
+              <li>بتتنفذ كـ <span class="font-semibold">Property</span> مش Function، يعني بتناديها من غير قوسين <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">()</code>.</li>
+              <li>مناسبة للعمليات اللي <span class="font-semibold">بتعتمد على بيانات تفاعلية</span> وبتتغير معاها.</li>
+            </ul>
+          </li>
+          <li class="mt-3">
+            <strong class="text-purple-600 dark:text-purple-400">methods (دوال):</strong>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm">
+              <li>بتتنفذ <span class="font-semibold text-purple-400">كل مرة</span> يتم استدعاؤها، مفيش تخزين مؤقت (No Caching).</li>
+              <li>تقدر تكون <span class="font-semibold">Asynchronous</span> (غير متزامنة) وترجع Promise.</li>
+              <li>بتتنفذ كـ <span class="font-semibold">Function</span>، يعني بتناديها بالقوسين <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">()</code>.</li>
+              <li>مناسبة للعمليات اللي <span class="font-semibold">بتتعامل مع Events</span> (زي الضغط على زرار) أو العمليات اللي <span class="font-semibold">مش محتاجة تخزين</span>.</li>
+            </ul>
+          </li>
         </ul>
-      </li>
-      <li>
-        <strong>methods:</strong>
-        <ul class="list-circle pr-6 space-y-1 mt-1">
-          <li>بتتنفذ بس لما تناديها.</li>
-          <li>مش بتخزن النتيجة، بتحسب كل مرة.</li>
-          <li>بتستخدمها لما محتاج parameters أو أحداث.</li>
-          <li>بتاخد parameters.</li>
+      </div>
+
+      <!-- مثال عملي -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-green-500 dark:border-green-400">
+        <h4 class="font-bold text-green-600 dark:text-green-400 mb-2">📝 مثال عملي:</h4>
+        <div class="mt-2 p-3 bg-gray-800 dark:bg-gray-900 rounded-lg">
+          <pre class="text-yellow-300 text-sm overflow-x-auto"><code>data() {
+  return {
+    firstName: 'Ahmed',
+    lastName: 'Ali',
+    counter: 0
+  }
+},
+computed: {
+  // هتتغير بس لما firstName أو lastName يتغيروا
+  fullName() {
+    console.log('Computed executed!');
+    return this.firstName + ' ' + this.lastName;
+  }
+},
+methods: {
+  // هتتنفذ كل مرة تتسمى، حتى لو البيانات متغيرتش
+  getFullName() {
+    console.log('Method executed!');
+    return this.firstName + ' ' + this.lastName;
+  },
+  increment() {
+    this.counter++;
+  }
+}</code></pre>
+        </div>
+        <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-sm">
+          <p class="text-gray-700 dark:text-gray-300">
+            🔍 <span class="font-semibold">تخيل السيناريو ده:</span>
+          </p>
+          <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+            <li>في الـ Template: <code>{{ fullName }}</code> و <code>{{ getFullName() }}</code></li>
+            <li>لو ضغطت على زرار <code>increment</code> (بيغير الـ counter):</li>
+            <li>الـ <strong>computed</strong> مش هتتنفذ تاني (لأن الـ dependencies متغيرتش) ✅</li>
+            <li>الـ <strong>method</strong> هتتنفذ مع كل ريندر (مع كل تغيير في الـ counter) ❌</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- متى تستخدم كل واحدة؟ -->
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-orange-500 dark:border-orange-400">
+        <h4 class="font-bold text-orange-600 dark:text-orange-400 mb-2">🎯 متى تستخدم كل واحدة؟</h4>
+        <ul class="list-disc pr-6 space-y-2">
+          <li>
+            <span class="font-semibold text-green-600 dark:text-green-400">✅ استخدم computed:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>لما تكون العملية <span class="font-semibold">بتعتمد على بيانات تفاعلية</span> (زي تنسيق النصوص، الفلاتر، المجاميع).</li>
+              <li>لما تكون العملية <span class="font-semibold">غالية التكلفة</span> (زي معالجة arrays كبيرة) وعايز تحسن الأداء.</li>
+              <li>لما عايز تستخدمها في الـ Template كـ <span class="font-semibold">Property</span> (من غير قوسين).</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-purple-600 dark:text-purple-400">✅ استخدم methods:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>لما تكون العملية <span class="font-semibold">بتستدعى من Event</span> (زي <code>@click</code> أو <code>@submit</code>).</li>
+              <li>لما تكون العملية <span class="font-semibold">غير متزامنة (Async)</span> (زي طلب API).</li>
+              <li>لما تكون العملية <span class="font-semibold">بتاخد Parameters</span> (معاملات) ديناميكية.</li>
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
-    <div class="mt-3 p-3 bg-gray-100 dark:bg-gray-700/30 rounded-lg">
-      <pre class="text-sm overflow-x-auto"><code>&lt;script setup&gt;
-import { ref, computed } from 'vue'
+      </div>
 
-const items = ref([1, 2, 3, 4, 5])
-
-const doubleComputed = computed(() => {
-  console.log('Computed executed')
-  return items.value.map(item => item * 2)
-})
-
-const doubleMethod = (items) => {
-  console.log('Method executed')
-  return items.map(item => item * 2)
-}
-
-console.log(doubleComputed.value) // بتنفذ مرة واحدة
-console.log(doubleComputed.value) // من الكاش
-
-console.log(doubleMethod(items.value)) // بتنفذ
-console.log(doubleMethod(items.value)) // بتنفذ تاني
-&lt;/script&gt;</code></pre>
+      <!-- الخاتمة -->
+      <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">الخلاصة:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <strong>computed</strong> = ذكي ومخزن (بيشتغل بس لما لازم يتغير) 🧠 
+            <br>
+            <strong>methods</strong> = منفذ فوري (بيشتغل كل مرة تتسمى) ⚡
+          </span>
+        </p>
+      </div>
     </div>
   `,
-      },
+},
       {
         question: "ما هو watch في Vue؟",
         answer: `
