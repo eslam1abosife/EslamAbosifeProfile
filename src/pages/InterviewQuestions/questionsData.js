@@ -2913,20 +2913,131 @@ console.log(route.query.search)
           </ul>
         `,
       },
-      {
-        question: "ما هي ثغرة XSS وكيف نحمي منها؟",
-        answer: `
-          <p><strong>XSS:</strong> ثغرة تسمح للهاكر بحقن كود JavaScript خبيث في صفحة الويب.</p>
-          <p class="mt-2"><strong>الحماية:</strong></p>
-          <ul class="list-disc pr-6 space-y-1 mt-1">
-            <li><strong>في React:</strong> JSX يقوم بتسريب (Escape) المحتوى تلقائيًا.</li>
-            <li><strong>في Vue:</strong> {{ }} يقوم بالتنقية تلقائيًا.</li>
-            <li><strong>تجنب v-html / dangerouslySetInnerHTML.</strong></li>
-            <li><strong>استخدم DOMPurify</strong> لتنقية المحتوى.</li>
-            <li><strong>HttpOnly Cookies</strong> لمنع JavaScript من الوصول للكوكيز.</li>
-          </ul>
-        `,
-      },
+     {
+  question: "ما هي ثغرة XSS وكيف نحمي منها؟",
+  answer: `
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">XSS (Cross-Site Scripting)</span> هي ثغرة أمنية بتمكن الهاكر من 
+          <span class="text-red-600 dark:text-red-400 font-semibold">حقن سكربتات خبيثة</span> (عادةً JavaScript) 
+          في صفحات الويب اللي بيشوفها المستخدمون التانيين، وبتتنفذ السكربتات دي في 
+          <span class="text-blue-600 dark:text-blue-400 font-semibold">متصفح الضحية</span> من غير علمه.
+        </p>
+        <div class="mt-2 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+          <p class="text-sm text-red-700 dark:text-red-300">
+            ⚠️ <span class="font-semibold">الخطر:</span> الهاكر يقدر يسرق الـ Cookies، والـ Tokens، ويسجل ضغطات المستخدم، 
+            وينفذ عمليات نيابة عنه، ويعمل إعادة توجيه لمواقع ضارة.
+          </p>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-red-500 dark:border-red-400">
+        <h4 class="font-bold text-red-600 dark:text-red-400 mb-2">🎯 أنواع ثغرة XSS:</h4>
+        <ul class="list-disc pr-6 space-y-3">
+          <li>
+            <span class="font-semibold text-red-400">1. Reflected XSS (غير مخزنة):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>السكربت الخبيث بيتم <strong>حقنه</strong> في الـ Request (زي رابط فيه كود ضار) وبيتم <strong>عكسه</strong> في الـ Response.</li>
+              <li><strong>مثال:</strong> رابط: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">site.com/search?q=&lt;script&gt;alert('Hacked')&lt;/script&gt;</code></li>
+              <li><strong>الاستخدام:</strong> بيتم إرسال الرابط للضحية عن طريق الإيميل أو الرسائل.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">2. Stored XSS (مخزنة):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>السكربت الخبيث بيتم <strong>تخزينه</strong> في قاعدة البيانات (زي في تعليق أو منشور) وبيتنفذ كل مرة حد يزور الصفحة.</li>
+              <li><strong>مثال:</strong> تعليق في مدونة يحتوي على كود ضار.</li>
+              <li><strong>الخطر:</strong> الأكثر خطورة لأنه بيأثر على <strong>كل المستخدمين</strong>.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-red-400">3. DOM-based XSS (على مستوى الـ DOM):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>السكربت الخبيث بيتم <strong>حقنه</strong> في الـ DOM (Document Object Model) عن طريق الـ JavaScript.</li>
+              <li><strong>مثال:</strong> استخدام <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">document.write()</code> أو <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">innerHTML</code> مع بيانات غير موثوقة.</li>
+              <li><strong>الخطر:</strong> بيتم التنفيذ في جانب العميل (Client-side) من غير ما السيرفر يعرف.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-green-500 dark:border-green-400">
+        <h4 class="font-bold text-green-600 dark:text-green-400 mb-2">🛡️ إزاي نحمي نفسنا من XSS؟</h4>
+        <ul class="list-disc pr-6 space-y-3">
+          <li>
+            <span class="font-semibold text-green-400">1. تنقية المدخلات (Input Sanitization):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li><strong>إزالة</strong> أو <strong>تشفير</strong> أي أحرف خاصة (زي <code>&lt;</code>, <code>&gt;</code>, <code>"</code>, <code>'</code>) من أي بيانات بتيجي من المستخدم.</li>
+              <li>استخدم مكتبات مخصصة (زي <code>DOMPurify</code> في الجافاسكريبت، أو <code>express-validator</code> في Node.js).</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">2. تشفير المخرجات (Output Encoding):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>عند عرض البيانات في الـ HTML، استخدم تشفير مناسب للسياق (زي <code>&amp;lt;</code> بدل <code>&lt;</code>).</li>
+              <li>استخدم <code>textContent</code> بدل <code>innerHTML</code> في الجافاسكريبت.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">3. سياسة أمان المحتوى (CSP):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>إضافة <code>Content-Security-Policy</code> في هيدر الـ HTTP.</li>
+              <li>بتحدد المصادر المسموح بها لتنفيذ السكربتات (زي <code>script-src 'self'</code>).</li>
+              <li>تمنع تنفيذ أي سكربت من مصادر غير موثوقة.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">4. استخدام الـ HttpOnly في Cookies:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>عند تخزين التوكنات والـ Session IDs، استخدم <code>HttpOnly</code> عشان <strong>تمنع الجافاسكريبت</strong> من الوصول للـ Cookies.</li>
+              <li>كده حتى لو الهاكر حقن سكربت، مش هيقدر يسرق الـ Tokens.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">5. التعامل مع الأحداث (Event Handlers):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>تجنب استخدام <code>eval()</code>, <code>setTimeout()</code> مع نصوص ديناميكية.</li>
+              <li>استخدم <code>addEventListener()</code> بدل كتابة الأحداث مباشرة في الـ HTML.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-purple-500 dark:border-purple-400">
+        <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-2">📝 مثال عملي (كود آمن):</h4>
+        <div class="mt-2 p-3 bg-gray-800 dark:bg-gray-900 rounded-lg">
+          <pre class="text-sm overflow-x-auto"><span class="text-red-400">// ❌</span> <span class="text-gray-400">خطر (غير آمن)</span>
+<span class="text-blue-300">document</span>.<span class="text-yellow-300">getElementById</span>(<span class="text-green-300">'output'</span>).<span class="text-yellow-300">innerHTML</span> = <span class="text-blue-300">userInput</span>;
+
+<span class="text-green-400">// ✅</span> <span class="text-gray-400">آمن</span>
+<span class="text-blue-300">document</span>.<span class="text-yellow-300">getElementById</span>(<span class="text-green-300">'output'</span>).<span class="text-yellow-300">textContent</span> = <span class="text-blue-300">userInput</span>;
+
+<span class="text-gray-400">// أو باستخدام DOMPurify للـ HTML الآمن</span>
+<span class="text-blue-300">document</span>.<span class="text-yellow-300">getElementById</span>(<span class="text-green-300">'output'</span>).<span class="text-yellow-300">innerHTML</span> = <span class="text-blue-300">DOMPurify</span>.<span class="text-yellow-300">sanitize</span>(<span class="text-blue-300">userInput</span>);
+
+<span class="text-gray-400">// في Vue.js</span>
+<span class="text-gray-400">// ❌ خطر</span>
+<span class="text-blue-300">&lt;div</span> <span class="text-yellow-300">v-html</span>=<span class="text-green-300">"userInput"</span><span class="text-blue-300">&gt;&lt;/div&gt;</span>
+
+<span class="text-gray-400">// ✅ آمن (التشغيل التلقائي الـ Vue بيشفر)</span>
+<span class="text-blue-300">&lt;div&gt;</span>{{ userInput }}<span class="text-blue-300">&lt;/div&gt;</span></pre>
+        </div>
+      </div>
+
+      <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">الخلاصة:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            الحماية من XSS بتتلخص في <strong>مبدأ واحد</strong>: 
+            <span class="font-semibold">"لا تثق أبداً في مدخلات المستخدم"</span>. 
+            دايمًا نظف، وشفر، وحدد مصادر السكربتات، وخلي الـ Cookies محمية بـ <code>HttpOnly</code> 🔒
+          </span>
+        </p>
+      </div>
+    </div>
+  `,
+},
       {
         question: "ما هي ثغرة CSRF وكيف نحمي منها؟",
         answer: `
@@ -3380,12 +3491,113 @@ console.log(route.query.search)
       {
         question: "ما هو الـ Semantic HTML وليه مهم؟",
         answer: `
-    <p>الـ Semantic HTML معناه إنك تستخدم العناصر حسب معناها مش حسب شكلها.</p>
-    <ul class="list-disc pr-6 space-y-2 mt-2">
-      <li>بيحسن الـ SEO لأن محركات البحث بتفهم المحتوى أحسن.</li>
-      <li>بيحسن الـ Accessibility (قارئات الشاشة).</li>
-      <li>بيخلي الكود أسهل في القراءة والصيانة.</li>
-    </ul>
+    <div class="space-y-4 text-gray-800 dark:text-gray-200">
+      <div>
+        <p class="mb-2">
+          <span class="font-semibold">الـ Semantic HTML</span> هو استخدام عناصر HTML 
+          <span class="text-blue-600 dark:text-blue-400 font-semibold">ذات معنى</span> 
+          بتوصف المحتوى اللي جواها، مش مجرد عناصر للتنسيق والشكل.
+        </p>
+        <div class="mt-2 p-3 bg-gray-800 dark:bg-gray-900 rounded-lg">
+          <pre class="text-sm overflow-x-auto"><span class="text-red-400">// ❌</span> <span class="text-gray-400">غير دلالي (Non-Semantic)</span>
+<span class="text-blue-300">&lt;div</span> <span class="text-yellow-300">class</span>=<span class="text-green-300">"header"</span><span class="text-blue-300">&gt;</span>العنوان<span class="text-blue-300">&lt;/div&gt;</span>
+<span class="text-blue-300">&lt;div</span> <span class="text-yellow-300">class</span>=<span class="text-green-300">"nav"</span><span class="text-blue-300">&gt;</span>روابط<span class="text-blue-300">&lt;/div&gt;</span>
+<span class="text-blue-300">&lt;div</span> <span class="text-yellow-300">class</span>=<span class="text-green-300">"main"</span><span class="text-blue-300">&gt;</span>محتوى<span class="text-blue-300">&lt;/div&gt;</span>
+
+<span class="text-green-400">// ✅</span> <span class="text-gray-400">دلالي (Semantic)</span>
+<span class="text-blue-300">&lt;header&gt;</span>العنوان<span class="text-blue-300">&lt;/header&gt;</span>
+<span class="text-blue-300">&lt;nav&gt;</span>روابط<span class="text-blue-300">&lt;/nav&gt;</span>
+<span class="text-blue-300">&lt;main&gt;</span>محتوى<span class="text-blue-300">&lt;/main&gt;</span></pre>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-blue-500 dark:border-blue-400">
+        <h4 class="font-bold text-blue-600 dark:text-blue-400 mb-2">📝 أمثلة على العناصر الدلالية:</h4>
+        <div class="grid grid-cols-2 gap-2 text-sm">
+          <ul class="list-disc pr-6 space-y-1">
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;header&gt;</code> - رأس الصفحة</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;nav&gt;</code> - قائمة التنقل</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;main&gt;</code> - المحتوى الرئيسي</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;section&gt;</code> - قسم</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;article&gt;</code> - مقالة مستقلة</li>
+          </ul>
+          <ul class="list-disc pr-6 space-y-1">
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;aside&gt;</code> - محتوى جانبي</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;figure&gt;</code> - صورة مع شرح</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;footer&gt;</code> - تذييل الصفحة</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;time&gt;</code> - وقت/تاريخ</li>
+            <li><code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">&lt;mark&gt;</code> - نص مميز</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-green-500 dark:border-green-400">
+        <h4 class="font-bold text-green-600 dark:text-green-400 mb-2">🎯 ليه الـ Semantic HTML مهم؟</h4>
+        <ul class="list-disc pr-6 space-y-3">
+          <li>
+            <span class="font-semibold text-green-400">1. تحسين محركات البحث (SEO):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>محركات البحث (زي Google) بتحلل العناصر الدلالية عشان تفهم <strong>بنية المحتوى</strong> وأهميته.</li>
+              <li>العناصر زي <code>&lt;h1&gt;</code> و <code>&lt;article&gt;</code> بتساعد في تصنيف الصفحة بشكل أفضل في نتائج البحث.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">2. إمكانية الوصول (Accessibility):</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>قارئات الشاشة (Screen Readers) بتستخدم العناصر الدلالية عشان تقرأ المحتوى بطريقة <strong>منطقية</strong> للمكفوفين.</li>
+              <li>بتخلي الموقع <strong>متاح</strong> للأشخاص ذوي الاحتياجات الخاصة.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">3. سهولة الصيانة والقراءة:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>الكود الدلالي <strong>أوضح</strong> وأسهل في الفهم لأي مطور تاني.</li>
+              <li>بتقلل الحاجة للـ <code>class</code> و <code>id</code> الكتيرة، والكود بيبقى <strong>أنظف</strong>.</li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold text-green-400">4. التوافق مع المستقبل:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-sm text-gray-600 dark:text-gray-400">
+              <li>المتصفحات والأجهزة المختلفة بتتعامل مع العناصر الدلالية بشكل <strong>موحد</strong>.</li>
+              <li>بتسهل عملية <strong>إعادة الهيكلة</strong> (Refactoring) في المستقبل.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg border-r-4 border-purple-500 dark:border-purple-400">
+        <h4 class="font-bold text-purple-600 dark:text-purple-400 mb-2">💡 إزاي تختار العنصر المناسب؟</h4>
+        <ul class="list-disc pr-6 space-y-2 text-sm">
+          <li>
+            <span class="font-semibold">اسأل نفسك:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li>هل المحتوى ده <strong>رئيسي</strong> في الصفحة؟ => استخدم <code>&lt;main&gt;</code></li>
+              <li>هل ده <strong>قسم مستقل</strong> بموضوع معين؟ => استخدم <code>&lt;section&gt;</code></li>
+              <li>هل ده <strong>مقالة</strong> أو منشور مدونة؟ => استخدم <code>&lt;article&gt;</code></li>
+              <li>هل ده <strong>معلومات جانبية</strong>؟ => استخدم <code>&lt;aside&gt;</code></li>
+            </ul>
+          </li>
+          <li>
+            <span class="font-semibold">تذكر القاعدة الذهبية:</span>
+            <ul class="list-disc pr-6 mt-1 space-y-1 text-gray-600 dark:text-gray-400">
+              <li><span class="text-red-600 dark:text-red-400">❌</span> استخدم <code>&lt;div&gt;</code> و <code>&lt;span&gt;</code> فقط للتنسيق.</li>
+              <li><span class="text-green-600 dark:text-green-400">✅</span> استخدم العناصر الدلالية للتعبير عن <strong>المعنى</strong>.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="mt-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+        <p class="font-semibold text-gray-800 dark:text-gray-200">
+          💡 <span class="text-blue-600 dark:text-blue-400">الخلاصة:</span>
+          <span class="block mt-1 text-sm text-gray-600 dark:text-gray-400">
+            الـ Semantic HTML هو <strong>أساس الكتابة النظيفة</strong> في الويب. بيساعد محركات البحث تفهم محتواك، 
+            بيخلي موقعك <strong>متاح</strong> للجميع، وبيسهل على المطورين التانيين 
+            <strong>صيانة</strong> الكود. استخدم العناصر المناسبة للمعنى، مش للشكل 🏗️
+          </span>
+        </p>
+      </div>
+    </div>
   `,
       },
 
