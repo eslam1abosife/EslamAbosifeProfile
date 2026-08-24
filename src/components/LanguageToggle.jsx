@@ -9,7 +9,8 @@ const LanguageToggle = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleLanguage}
-      className="px-3 py-2 rounded-xl border transition-all text-sm font-medium"
+      className="inline-flex h-10 w-[78px] items-center justify-center whitespace-nowrap rounded-xl border text-sm font-medium transition-all"
+      aria-label={language === 'ar' ? 'Switch to English' : 'التبديل إلى العربية'}
       style={{
         background: 'var(--bg-card)',
         borderColor: 'var(--border-color)',
