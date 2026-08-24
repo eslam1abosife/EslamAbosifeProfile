@@ -5,7 +5,6 @@ export const translations = {
       projects: "المشاريع",
       about: "عني",
       contact: "تواصل",
-      questions: "أسئلة المقابلات",
     },
     home: {
       badge: "🚀 مطور ويب محترف",
@@ -461,7 +460,6 @@ export const translations = {
       projects: "Projects",
       about: "About",
       contact: "Contact",
-      questions: "Interview Questions",
     },
     home: {
       badge: "🚀 Senior Web Developer",

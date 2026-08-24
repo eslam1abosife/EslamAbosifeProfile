@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import { FaBars, FaTimes, FaCode, FaQuestionCircle } from 'react-icons/fa'
+import { FaBars, FaTimes, FaCode } from 'react-icons/fa'
 import ThemeToggle from './ThemeToggle'
 import LanguageToggle from './LanguageToggle'
 import { useLanguage } from '../context/LanguageContext'
@@ -27,7 +27,6 @@ const Navbar = () => {
     { path: '/projects', label: t.nav.projects },
     { path: '/about', label: t.nav.about },
     { path: '/contact', label: t.nav.contact },
-    { path: '/questions', label: t.nav.questions, icon: FaQuestionCircle }  // <-- أضف هذا السطر
   ]
 
   return (
