@@ -198,7 +198,17 @@ const Projects = () => {
                     </div>
                     <div>
                       <h2 className="text-2xl font-bold text-primary">{section.title}</h2>
-                      <p className="text-sm text-muted">{isRTL ? 'جاري التحميل...' : 'Loading...'}</p>
+                      <div
+                        className="mt-2 h-1.5 w-20 overflow-hidden rounded-full bg-accent/10"
+                        role="status"
+                        aria-label={isRTL ? "تحميل" : "Loading"}
+                      >
+                        <motion.div
+                          animate={{ x: ["-100%", "100%"] }}
+                          transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                          className="h-full w-1/2 rounded-full bg-accent"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -225,7 +235,11 @@ const Projects = () => {
 
             return (
               <div key={section.id}>
-                <Suspense fallback={<div className="text-center py-4">{isRTL ? 'جاري التحميل...' : 'Loading...'}</div>}>
+                <Suspense fallback={
+                  <div className="flex justify-center py-4" role="status" aria-label={isRTL ? "تحميل" : "Loading"}>
+                    <div className="h-6 w-6 animate-spin rounded-full border-2 border-accent/20 border-t-accent" />
+                  </div>
+                }>
                   <SectionHeader
                     icon={section.icon}
                     title={section.title}

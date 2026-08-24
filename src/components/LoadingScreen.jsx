@@ -1,14 +1,8 @@
 // src/components/LoadingScreen.jsx
 import { motion } from 'framer-motion'
 import { FaCode } from 'react-icons/fa'
-import { useLanguage } from '../context/LanguageContext'
-import { translations } from '../data/translations'
 
 const LoadingScreen = () => {
-  const { language } = useLanguage()
-  const t = translations[language]
-  const isRTL = language === 'ar'
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -36,16 +30,6 @@ const LoadingScreen = () => {
         >
           <FaCode />
         </motion.div>
-
-        {/* Animated Text */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-2xl font-bold text-primary mb-2"
-        >
-          {isRTL ? 'جاري التحميل...' : 'Loading...'}
-        </motion.h2>
 
         {/* Animated Dots */}
         <div className="flex justify-center gap-3 mt-4">
@@ -90,20 +74,6 @@ const LoadingScreen = () => {
           />
         </motion.div>
 
-        {/* Loading Percentage */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="text-sm text-muted mt-4"
-        >
-          <motion.span
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 1, repeat: Infinity }}
-          >
-            ████
-          </motion.span>
-        </motion.p>
       </div>
     </motion.div>
   )
